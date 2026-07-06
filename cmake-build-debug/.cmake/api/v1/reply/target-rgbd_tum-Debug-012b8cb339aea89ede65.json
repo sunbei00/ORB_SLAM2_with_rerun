@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/root/ORB_SLAM2_with_rerun/Examples/Monocular/mono_tum"
+			"path" : "/root/ORB_SLAM2_with_rerun/Examples/RGB-D/rgbd_tum"
 		}
 	],
 	"backtrace" : 1,
@@ -30,19 +30,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 116,
+				"line" : 98,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 118,
+				"line" : 100,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 87,
+				"line" : 86,
 				"parent" : 0
 			},
 			{
@@ -155,7 +155,7 @@
 			"id" : "arrow_cpp::@9027447480fbc0937424"
 		}
 	],
-	"id" : "mono_tum::@6890427a1f51a3e7e1df",
+	"id" : "rgbd_tum::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -455,8 +455,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "mono_tum",
-	"nameOnDisk" : "mono_tum",
+	"name" : "rgbd_tum",
+	"nameOnDisk" : "rgbd_tum",
 	"paths" : 
 	{
 		"build" : ".",
@@ -477,7 +477,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Examples/Monocular/mono_tum.cc",
+			"path" : "Examples/RGB-D/rgbd_tum.cc",
 			"sourceGroupIndex" : 0
 		}
 	],

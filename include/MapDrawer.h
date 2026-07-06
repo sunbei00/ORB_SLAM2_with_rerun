@@ -41,13 +41,19 @@ public:
     void DrawMapPoints();
     void DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph);
     void DrawCurrentCamera();
+    void DrawFrameImage(const cv::Mat &im);
+    void SetFrameId(const int frameId);
+    bool IsRerunEnabled() const;
     void SetCurrentCameraPose(const cv::Mat &Tcw);
     void SetReferenceKeyFrame(KeyFrame *pKF);
 
 private:
 
+    void LogStaticScene();
+
     rerun::RecordingStream mRecordStream;
     bool mbEnableRerun;
+    bool mbStaticSceneLogged;
     float mKeyFrameSize;
     float mKeyFrameLineWidth;
     float mGraphLineWidth;

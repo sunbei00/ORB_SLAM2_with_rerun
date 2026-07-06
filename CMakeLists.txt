@@ -80,7 +80,6 @@ src/Frame.cc
 src/KeyFrameDatabase.cc
 src/Sim3Solver.cc
 src/Initializer.cc
-src/Viewer.cc
 src/SLAMComparators.cc
 )
 

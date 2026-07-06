@@ -21,6 +21,7 @@
 #include "MapDrawer.h"   // IWYU pragma: associated
 
 #include <stddef.h>
+#include <opencv2/imgproc.hpp>
 #include <mutex>
 #include <set>
 #include <vector>
@@ -34,22 +35,34 @@
 namespace ORB_SLAM2
 {
 
-MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath, bool bEnableRerun) :
-    mpMap(pMap), mRecordStream(rerun::RecordingStream("ORB_SLAM2")), mbEnableRerun(bEnableRerun)
+namespace
 {
-    cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
+constexpr float kDefaultKeyFrameSize = 0.05f;
+constexpr float kDefaultKeyFrameLineWidth = 1.0f;
+constexpr float kDefaultGraphLineWidth = 0.9f;
+constexpr float kDefaultPointSize = 2.0f;
+constexpr float kDefaultCameraSize = 0.08f;
+constexpr float kDefaultCameraLineWidth = 3.0f;
+}
 
-    mKeyFrameSize = fSettings["Viewer.KeyFrameSize"];
-    mKeyFrameLineWidth = fSettings["Viewer.KeyFrameLineWidth"];
-    mGraphLineWidth = fSettings["Viewer.GraphLineWidth"];
-    mPointSize = fSettings["Viewer.PointSize"];
-    mCameraSize = fSettings["Viewer.CameraSize"];
-    mCameraLineWidth = fSettings["Viewer.CameraLineWidth"];
-
+MapDrawer::MapDrawer(Map* pMap, const string &, bool bEnableRerun) :
+    mpMap(pMap), mRecordStream(rerun::RecordingStream("ORB_SLAM2")), mbEnableRerun(bEnableRerun),
+    mbStaticSceneLogged(false), mKeyFrameSize(kDefaultKeyFrameSize),
+    mKeyFrameLineWidth(kDefaultKeyFrameLineWidth), mGraphLineWidth(kDefaultGraphLineWidth),
+    mPointSize(kDefaultPointSize), mCameraSize(kDefaultCameraSize),
+    mCameraLineWidth(kDefaultCameraLineWidth)
+{
     if(!mbEnableRerun)
         return;
 
     mRecordStream.spawn().exit_on_failure();
+}
+
+void MapDrawer::LogStaticScene()
+{
+    if(!mbEnableRerun || mbStaticSceneLogged)
+        return;
+
     mRecordStream.log_static("/", rerun::ViewCoordinates::RIGHT_HAND_Y_DOWN);
     mRecordStream.log_static("world", rerun::ViewCoordinates::RIGHT_HAND_Y_DOWN);
     const float w = mCameraSize;
@@ -71,6 +84,7 @@ MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath, bool bEnableRerun)
             .with_colors({rerun::Color(0, 255, 0)})
             .with_radii(mCameraLineWidth * 0.001f)
     );
+    mbStaticSceneLogged = true;
 }
 
 void MapDrawer::DrawMapPoints()
@@ -115,6 +129,61 @@ void MapDrawer::DrawMapPoints()
         "world/reference_map_points",
         rerun::Points3D(refPoints).with_colors({rerun::Color(255, 0, 0)}).with_radii(mPointSize * 0.01f)
     );
+}
+
+void MapDrawer::DrawFrameImage(const cv::Mat &im)
+{
+    if(!mbEnableRerun || im.empty())
+        return;
+
+    cv::Mat rgb;
+    if(im.channels() == 1)
+        cv::cvtColor(im, rgb, cv::COLOR_GRAY2RGB);
+    else if(im.channels() == 3)
+        cv::cvtColor(im, rgb, cv::COLOR_BGR2RGB);
+    else if(im.channels() == 4)
+        cv::cvtColor(im, rgb, cv::COLOR_BGRA2RGBA);
+    else
+        return;
+
+    if(!rgb.isContinuous())
+        rgb = rgb.clone();
+
+    const size_t byteCount = rgb.total() * rgb.elemSize();
+    vector<uint8_t> bytes(rgb.data, rgb.data + byteCount);
+    const rerun::WidthHeight resolution = {
+        static_cast<uint32_t>(rgb.cols),
+        static_cast<uint32_t>(rgb.rows)
+    };
+
+    if(rgb.channels() == 4)
+    {
+        mRecordStream.log(
+            "frame/image",
+            rerun::Image::from_rgba32(rerun::take_ownership(std::move(bytes)), resolution)
+        );
+    }
+    else
+    {
+        mRecordStream.log(
+            "frame/image",
+            rerun::Image::from_rgb24(rerun::take_ownership(std::move(bytes)), resolution)
+        );
+    }
+}
+
+void MapDrawer::SetFrameId(const int frameId)
+{
+    if(!mbEnableRerun)
+        return;
+
+    LogStaticScene();
+    mRecordStream.set_time_sequence("frame_id", frameId);
+}
+
+bool MapDrawer::IsRerunEnabled() const
+{
+    return mbEnableRerun;
 }
 
 void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph)
@@ -206,9 +275,6 @@ void MapDrawer::DrawCurrentCamera()
 {
     if(!mbEnableRerun)
         return;
-
-    static int frame_id = 0;
-    mRecordStream.set_time_sequence("frame_id", frame_id++);
 
     if(mCameraPose.empty())
         return;

@@ -50,7 +50,7 @@ namespace ORB_SLAM2
 Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor):
     mState(NO_IMAGES_YET), mSensor(sensor), mbOnlyTracking(false),
     mbRunSynchronously(false), mbOffKeyframeDecisionOffline(false), mbVO(false), mpORBVocabulary(pVoc),
-    mpKeyFrameDB(pKFDB), mpInitializer(static_cast<Initializer*>(NULL)), mpSystem(pSys), mpViewer(NULL),
+    mpKeyFrameDB(pKFDB), mpInitializer(static_cast<Initializer*>(NULL)), mpSystem(pSys),
     mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mnLastRelocFrameId(0)
 {
     // Load camera parameters from settings file
@@ -171,12 +171,6 @@ void Tracking::SetLoopClosing(LoopClosing *pLoopClosing)
 {
     mpLoopClosing=pLoopClosing;
 }
-
-void Tracking::SetViewer(Viewer *pViewer)
-{
-    mpViewer=pViewer;
-}
-
 
 cv::Mat Tracking::GrabImageStereo(const cv::Mat &imRectLeft, const cv::Mat &imRectRight, const double &timestamp)
 {
@@ -1520,12 +1514,6 @@ void Tracking::Reset()
 {
 
     cout << "System Reseting" << endl;
-    if(mpViewer)
-    {
-        mpViewer->RequestStop();
-        while(!mpViewer->isStopped())
-            usleep(3000);
-    }
 
     // Reset Local Mapping
     cout << "Reseting Local Mapper...";
@@ -1556,9 +1544,6 @@ void Tracking::Reset()
     }
 
     tracked_frames.clear();
-
-    if(mpViewer)
-        mpViewer->Release();
 }
 
 void Tracking::ChangeCalibration(const string &strSettingPath)

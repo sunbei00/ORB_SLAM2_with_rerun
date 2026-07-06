@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/root/ORB_SLAM2_with_rerun/Examples/Stereo/stereo_euroc"
+			"path" : "/root/ORB_SLAM2_with_rerun/Examples/Monocular/mono_kitti"
 		}
 	],
 	"backtrace" : 1,
@@ -30,19 +30,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 109,
+				"line" : 119,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 111,
+				"line" : 121,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 87,
+				"line" : 86,
 				"parent" : 0
 			},
 			{
@@ -155,7 +155,7 @@
 			"id" : "arrow_cpp::@9027447480fbc0937424"
 		}
 	],
-	"id" : "stereo_euroc::@6890427a1f51a3e7e1df",
+	"id" : "mono_kitti::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -455,8 +455,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "stereo_euroc",
-	"nameOnDisk" : "stereo_euroc",
+	"name" : "mono_kitti",
+	"nameOnDisk" : "mono_kitti",
 	"paths" : 
 	{
 		"build" : ".",
@@ -477,7 +477,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Examples/Stereo/stereo_euroc.cc",
+			"path" : "Examples/Monocular/mono_kitti.cc",
 			"sourceGroupIndex" : 0
 		}
 	],

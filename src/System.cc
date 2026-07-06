@@ -41,7 +41,6 @@
 #include "Map.h"
 #include "MapDrawer.h"
 #include "Tracking.h"
-#include "Viewer.h"
 #include "Thirdparty/DBoW2/DUtils/Random.h"
 
 namespace ORB_SLAM2
@@ -49,10 +48,10 @@ namespace ORB_SLAM2
 class MapPoint;
 
 System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor,
-               const bool bUseViewer):mSensor(sensor), mbOfflineMode(false), mpViewer(static_cast<Viewer*>(NULL)),
+               const bool bUseViewer):mSensor(sensor), mbOfflineMode(false),
         mptLocalMapping(static_cast<thread*>(NULL)), mptLoopClosing(static_cast<thread*>(NULL)),
-        mptViewer(static_cast<thread*>(NULL)), mbReset(false),mbActivateLocalizationMode(false),
-        mbDeactivateLocalizationMode(false), mBAIntervalOffline(1), mFrameCNTOffline(0)
+        mbReset(false),mbActivateLocalizationMode(false),
+        mbDeactivateLocalizationMode(false), mBAIntervalOffline(1), mFrameCNTOffline(0), mRerunFrameId(0)
 {
     // Output welcome message
     cout << endl <<
@@ -138,7 +137,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     //Create the Map
     mpMap = new Map();
 
-    //Create Drawers. These are used by the Viewer
+    //Create drawers. These provide tracking and map snapshots for Rerun logging.
     mpFrameDrawer = new FrameDrawer(mpMap);
     mpMapDrawer = new MapDrawer(mpMap, strSettingsFile, bUseViewer);
 
@@ -159,13 +158,8 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     if(!mbOfflineMode)
         mptLoopClosing = new thread(&ORB_SLAM2::LoopClosing::Run, mpLoopCloser);
 
-    //Initialize the Viewer thread and launch
     if(bUseViewer && !mbOfflineMode)
-    {
-        mpViewer = new Viewer(this, mpFrameDrawer,mpMapDrawer,mpTracker,strSettingsFile);
-        mptViewer = new thread(&Viewer::Run, mpViewer);
-        mpTracker->SetViewer(mpViewer);
-    }
+        cout << "Rerun viewer enabled; OpenCV viewer thread suppressed." << endl;
 
     //Set pointers between threads
     mpTracker->SetLocalMapper(mpLocalMapper);
@@ -379,12 +373,6 @@ void System::Shutdown()
 
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
-    if(mpViewer)
-    {
-        mpViewer->RequestFinish();
-        while(!mpViewer->isFinished())
-            usleep(5000);
-    }
 
     // Wait until all thread have effectively stopped
     while(!mpLocalMapper->isFinished() || !mpLoopCloser->isFinished() || mpLoopCloser->isRunningGBA())
@@ -396,9 +384,12 @@ void System::Shutdown()
 
 void System::LogRerunFrame()
 {
-    if(!mbOfflineMode || !mpMapDrawer)
+    if(!mpMapDrawer || !mpMapDrawer->IsRerunEnabled())
         return;
 
+    mpMapDrawer->SetFrameId(mRerunFrameId++);
+    if(mpFrameDrawer)
+        mpMapDrawer->DrawFrameImage(mpFrameDrawer->DrawFrame());
     mpMapDrawer->DrawCurrentCamera();
     mpMapDrawer->DrawKeyFrames(true, true);
     mpMapDrawer->DrawMapPoints();
