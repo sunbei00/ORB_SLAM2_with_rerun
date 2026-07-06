@@ -60,6 +60,15 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     float cx = fSettings["Camera.cx"];
     float cy = fSettings["Camera.cy"];
 
+
+    cv::FileNode offlineNode = fSettings["offline.enabled"];
+    if(!offlineNode.empty())
+        mbRunSynchronously = static_cast<int>(offlineNode) != 0;
+
+    cv::FileNode offlineIntervalNode = fSettings["offline.offKeyFrameDecision"];
+    if(!offlineIntervalNode.empty())
+        mbOffKeyframeDecisionOffline = static_cast<int>(offlineIntervalNode) != 0;
+
     cv::Mat K = cv::Mat::eye(3,3,CV_32F);
     K.at<float>(0,0) = fx;
     K.at<float>(1,1) = fy;
@@ -458,7 +467,7 @@ void Tracking::Track()
             mlpTemporalPoints.clear();
 
             // Check if we need to insert a new keyframe
-            if(NeedNewKeyFrame())
+            if((mbRunSynchronously && mbOffKeyframeDecisionOffline) || NeedNewKeyFrame())
                 CreateNewKeyFrame();
 
             // We allow points with high innovation (considererd outliers by the Huber Function)

@@ -52,7 +52,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
                const bool bUseViewer):mSensor(sensor), mbOfflineMode(false), mpViewer(static_cast<Viewer*>(NULL)),
         mptLocalMapping(static_cast<thread*>(NULL)), mptLoopClosing(static_cast<thread*>(NULL)),
         mptViewer(static_cast<thread*>(NULL)), mbReset(false),mbActivateLocalizationMode(false),
-        mbDeactivateLocalizationMode(false), mBAInterval(1), mFrameCNT(0)
+        mbDeactivateLocalizationMode(false), mBAIntervalOffline(1), mFrameCNTOffline(0)
 {
     // Output welcome message
     cout << endl <<
@@ -85,9 +85,9 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     cv::FileNode offlineIntervalNode = fsSettings["offline.interval"];
     if(!offlineIntervalNode.empty())
     {
-        mBAInterval = static_cast<int>(offlineIntervalNode);
-        if(mBAInterval < 1)
-            mBAInterval = 1;
+        mBAIntervalOffline = static_cast<int>(offlineIntervalNode);
+        if(mBAIntervalOffline < 1)
+            mBAIntervalOffline = 1;
     }
 
     if(mbOfflineMode)
@@ -105,10 +105,10 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
         // MODIFIED for "seeding DUtils random in offline mode for deterministic RANSAC"
         DUtils::Random::SeedRand(0);
         cout << "SLAM execution mode: offline (single-thread deterministic backend)" << endl;
-        if(mBAInterval == 1)
+        if(mBAIntervalOffline == 1)
             cout << "Offline LocalMapping Local BA: every frame" << endl;
         else
-            cout << "Offline LocalMapping Local BA: every " << mBAInterval << " frames" << endl;
+            cout << "Offline LocalMapping Local BA: every " << mBAIntervalOffline << " frames" << endl;
         if(bUseViewer)
             cout << "Offline mode: Rerun viewer enabled; Pangolin/OpenCV viewer thread suppressed." << endl;
     }
@@ -148,7 +148,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
                              mpMap, mpKeyFrameDatabase, strSettingsFile, mSensor);
 
     //Initialize the Local Mapping thread and launch
-    mpLocalMapper = new LocalMapping(mpMap, mSensor==MONOCULAR);
+    mpLocalMapper = new LocalMapping(mpMap, strSettingsFile, mSensor==MONOCULAR);
     mpLocalMapper->SetRunSynchronously(mbOfflineMode);
     if(!mbOfflineMode)
         mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run,mpLocalMapper);
@@ -220,7 +220,7 @@ cv::Mat System::TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight, const
     }
     }
 
-    mFrameCNT++;
+    mFrameCNTOffline++;
     cv::Mat Tcw = mpTracker->GrabImageStereo(imLeft,imRight,timestamp);
     BackendOffline();
     LogRerunFrame();
@@ -274,7 +274,7 @@ cv::Mat System::TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap, const doub
     }
     }
 
-    mFrameCNT++;
+    mFrameCNTOffline++;
     cv::Mat Tcw = mpTracker->GrabImageRGBD(im,depthmap,timestamp);
     BackendOffline();
     LogRerunFrame();
@@ -328,7 +328,7 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
     }
     }
 
-    mFrameCNT++;
+    mFrameCNTOffline++;
     cv::Mat Tcw = mpTracker->GrabImageMonocular(im,timestamp);
     BackendOffline();
     LogRerunFrame();
@@ -369,7 +369,7 @@ bool System::MapChanged()
 void System::Reset()
 {
     unique_lock<mutex> lock(mMutexReset);
-    mFrameCNT = 0;
+    mFrameCNTOffline = 0;
     mbReset = true;
 }
 
@@ -568,7 +568,7 @@ void System::BackendOffline() const {
     if (!mbOfflineMode)
         return;
     mpLocalMapper->ProcessNewKeyFrameOffline();
-    if(mFrameCNT % mBAInterval == 0)
+    if(mFrameCNTOffline % mBAIntervalOffline == 0)
         mpLocalMapper->LocalBAOffline();
 }
 } //namespace ORB_SLAM

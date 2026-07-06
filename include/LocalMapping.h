@@ -44,7 +44,7 @@ class MapPoint;
 class LocalMapping
 {
 public:
-    LocalMapping(Map* pMap, const float bMonocular);
+    LocalMapping(Map* pMap, const string &strSettingPath, const float bMonocular);
 
     void SetLoopCloser(LoopClosing* pLoopCloser);
 
@@ -132,6 +132,8 @@ protected:
 
     bool mbAcceptKeyFrames;
     std::mutex mMutexAccept;
+
+    bool mbOffKeyframeCullingOffline;
 };
 
 } //namespace ORB_SLAM

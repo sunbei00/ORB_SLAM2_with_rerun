@@ -42,12 +42,17 @@
 namespace ORB_SLAM2
 {
 
-LocalMapping::LocalMapping(Map *pMap, const float bMonocular):
+LocalMapping::LocalMapping(Map *pMap, const string &strSettingPath, const float bMonocular):
     mbMonocular(bMonocular), mbResetRequested(false), mbFinishRequested(false), mbFinished(true), mpMap(pMap),
     mpLoopCloser(static_cast<LoopClosing*>(NULL)), mpTracker(static_cast<Tracking*>(NULL)),
     mpCurrentKeyFrame(static_cast<KeyFrame*>(NULL)), mbAbortBA(false), mbStopped(false),
     mbStopRequested(false), mbNotStop(false), mbRunSynchronously(false), mbAcceptKeyFrames(true)
 {
+    cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
+    cv::FileNode offKeyFrameCullingNode = fSettings["offline.offKeyFrameCulling"];
+    if(!offKeyFrameCullingNode.empty())
+        mbOffKeyframeCullingOffline = static_cast<int>(offKeyFrameCullingNode) != 0;
+
 }
 
 void LocalMapping::SetLoopCloser(LoopClosing* pLoopCloser)
@@ -147,7 +152,8 @@ void LocalMapping::ProcessNewKeyFrameOffline() {
     SearchInNeighbors();
 
     // Check redundant local Keyframes
-    // KeyFrameCulling();
+    if (!mbOffKeyframeCullingOffline)
+        KeyFrameCulling();
 
     mpLoopCloser->InsertKeyFrame(mpCurrentKeyFrame);
 }
@@ -160,6 +166,7 @@ void LocalMapping::LocalBAOffline() {
     // Local BA
     if(mpMap->KeyFramesInMap()>2)
         Optimizer::LocalBundleAdjustment(mpCurrentKeyFrame, &mbAbortBA, mpMap);
+
 }
 
 

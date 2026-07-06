@@ -1,6 +1,9 @@
 %YAML:1.0
 offline.enabled: 1
 offline.interval: 10
+offline.offKeyFrameDecision: 1
+offline.offKeyFrameCulling: 1
+
 
 #--------------------------------------------------------------------------------------------
 # Camera Parameters. Adjust them!

@@ -179,8 +179,8 @@ private:
     std::mutex mMutexState;
 
     // Offline Local BA counting
-    int mBAInterval;
-    int mFrameCNT;
+    int mBAIntervalOffline;
+    int mFrameCNTOffline;
 
 };
 
