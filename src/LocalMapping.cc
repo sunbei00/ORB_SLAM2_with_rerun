@@ -46,7 +46,8 @@ LocalMapping::LocalMapping(Map *pMap, const string &strSettingPath, const float 
     mbMonocular(bMonocular), mbResetRequested(false), mbFinishRequested(false), mbFinished(true), mpMap(pMap),
     mpLoopCloser(static_cast<LoopClosing*>(NULL)), mpTracker(static_cast<Tracking*>(NULL)),
     mpCurrentKeyFrame(static_cast<KeyFrame*>(NULL)), mbAbortBA(false), mbStopped(false),
-    mbStopRequested(false), mbNotStop(false), mbRunSynchronously(false), mbAcceptKeyFrames(true)
+    mbStopRequested(false), mbNotStop(false), mbRunSynchronously(false), mbAcceptKeyFrames(true),
+    mbOffKeyframeCullingOffline(false)
 {
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
     cv::FileNode offKeyFrameCullingNode = fSettings["offline.offKeyFrameCulling"];
