@@ -1,7 +1,7 @@
 %YAML:1.0
 offline.enabled: 1
 offline.interval: 10
-offline.offKeyFrameDecision: 1
+offline.offKeyFrameDecision: 0
 offline.offKeyFrameCulling: 1
 
 

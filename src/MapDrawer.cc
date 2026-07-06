@@ -37,11 +37,11 @@ namespace ORB_SLAM2
 
 namespace
 {
-constexpr float kDefaultKeyFrameSize = 0.05f;
-constexpr float kDefaultKeyFrameLineWidth = 1.0f;
+constexpr float kDefaultKeyFrameSize = 0.1f;
+constexpr float kDefaultKeyFrameLineWidth = 0.5f;
 constexpr float kDefaultGraphLineWidth = 0.9f;
 constexpr float kDefaultPointSize = 2.0f;
-constexpr float kDefaultCameraSize = 0.08f;
+constexpr float kDefaultCameraSize = 0.20f;
 constexpr float kDefaultCameraLineWidth = 3.0f;
 }
 
@@ -82,7 +82,7 @@ void MapDrawer::LogStaticScene()
         "world/current_camera/camera_frustum",
         rerun::LineStrips3D(cameraFrustum)
             .with_colors({rerun::Color(0, 255, 0)})
-            .with_radii(mCameraLineWidth * 0.001f)
+            .with_radii(mCameraLineWidth * 0.01f)
     );
     mbStaticSceneLogged = true;
 }
@@ -209,7 +209,7 @@ void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph)
             "world/keyframes",
             rerun::Points3D(keyframePoints)
                 .with_colors({rerun::Color(0, 0, 255)})
-                .with_radii(mKeyFrameSize * mKeyFrameLineWidth * 0.1f)
+                .with_radii(mKeyFrameSize * mKeyFrameLineWidth)
         );
     }
 
