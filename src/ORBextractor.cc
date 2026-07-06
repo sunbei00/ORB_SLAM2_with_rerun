@@ -80,6 +80,22 @@ const int PATCH_SIZE = 31;
 const int HALF_PATCH_SIZE = 15;
 const int EDGE_THRESHOLD = 19;
 
+static bool CompareNodeSizeAndBounds(const pair<int, ExtractorNode*> &a,
+                                     const pair<int, ExtractorNode*> &b)
+{
+    if(a.first != b.first)
+        return a.first < b.first;
+
+    const ExtractorNode* pNodeA = a.second;
+    const ExtractorNode* pNodeB = b.second;
+    if(pNodeA->UL.x != pNodeB->UL.x)
+        return pNodeA->UL.x < pNodeB->UL.x;
+    if(pNodeA->UL.y != pNodeB->UL.y)
+        return pNodeA->UL.y < pNodeB->UL.y;
+    if(pNodeA->BR.x != pNodeB->BR.x)
+        return pNodeA->BR.x < pNodeB->BR.x;
+    return pNodeA->BR.y < pNodeB->BR.y;
+}
 
 static float IC_Angle(const Mat& image, Point2f pt,  const vector<int> & u_max)
 {
@@ -688,7 +704,8 @@ vector<cv::KeyPoint> ORBextractor::DistributeOctTree(const vector<cv::KeyPoint>&
                 vector<pair<int,ExtractorNode*> > vPrevSizeAndPointerToNode = vSizeAndPointerToNode;
                 vSizeAndPointerToNode.clear();
 
-                sort(vPrevSizeAndPointerToNode.begin(),vPrevSizeAndPointerToNode.end());
+                sort(vPrevSizeAndPointerToNode.begin(), vPrevSizeAndPointerToNode.end(),
+                     CompareNodeSizeAndBounds);
                 for(int j=vPrevSizeAndPointerToNode.size()-1;j>=0;j--)
                 {
                     ExtractorNode n1,n2,n3,n4;

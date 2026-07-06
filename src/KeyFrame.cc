@@ -152,10 +152,15 @@ void KeyFrame::UpdateBestCovisibles()
     unique_lock<mutex> lock(mMutexConnections);
     vector<pair<int,KeyFrame*> > vPairs;
     vPairs.reserve(mConnectedKeyFrameWeights.size());
-    for(map<KeyFrame*,int>::iterator mit=mConnectedKeyFrameWeights.begin(), mend=mConnectedKeyFrameWeights.end(); mit!=mend; mit++)
+    for(auto mit=mConnectedKeyFrameWeights.begin(), mend=mConnectedKeyFrameWeights.end(); mit!=mend; mit++)
        vPairs.push_back(make_pair(mit->second,mit->first));
 
-    sort(vPairs.begin(),vPairs.end());
+    sort(vPairs.begin(), vPairs.end(),
+         [](const pair<int,KeyFrame*>& a, const pair<int,KeyFrame*>& b){
+             if(a.first != b.first)
+                 return a.first < b.first;
+             return a.second->mnId < b.second->mnId;
+         });
     list<KeyFrame*> lKFs;
     list<int> lWs;
     for(size_t i=0, iend=vPairs.size(); i<iend;i++)
@@ -168,11 +173,11 @@ void KeyFrame::UpdateBestCovisibles()
     mvOrderedWeights = vector<int>(lWs.begin(), lWs.end());    
 }
 
-set<KeyFrame*> KeyFrame::GetConnectedKeyFrames()
+set<KeyFrame*, KFIdLess> KeyFrame::GetConnectedKeyFrames()
 {
     unique_lock<mutex> lock(mMutexConnections);
-    set<KeyFrame*> s;
-    for(map<KeyFrame*,int>::iterator mit=mConnectedKeyFrameWeights.begin();mit!=mConnectedKeyFrameWeights.end();mit++)
+    set<KeyFrame*, KFIdLess> s;
+    for(auto mit=mConnectedKeyFrameWeights.begin();mit!=mConnectedKeyFrameWeights.end();mit++)
         s.insert(mit->first);
     return s;
 }
@@ -244,10 +249,10 @@ void KeyFrame::ReplaceMapPointMatch(const size_t &idx, MapPoint* pMP)
     mvpMapPoints[idx]=pMP;
 }
 
-set<MapPoint*> KeyFrame::GetMapPoints()
+set<MapPoint*, MPIdLess> KeyFrame::GetMapPoints()
 {
     unique_lock<mutex> lock(mMutexFeatures);
-    set<MapPoint*> s;
+    set<MapPoint*, MPIdLess> s;
     for(size_t i=0, iend=mvpMapPoints.size(); i<iend; i++)
     {
         if(!mvpMapPoints[i])
@@ -300,7 +305,7 @@ MapPoint* KeyFrame::GetMapPoint(const size_t &idx)
 
 void KeyFrame::UpdateConnections()
 {
-    map<KeyFrame*,int> KFcounter;
+    map<KeyFrame*,int,KFIdLess> KFcounter;
 
     vector<MapPoint*> vpMP;
 
@@ -321,9 +326,9 @@ void KeyFrame::UpdateConnections()
         if(pMP->isBad())
             continue;
 
-        map<KeyFrame*,size_t> observations = pMP->GetObservations();
+        auto observations = pMP->GetObservations();
 
-        for(map<KeyFrame*,size_t>::iterator mit=observations.begin(), mend=observations.end(); mit!=mend; mit++)
+        for(auto mit=observations.begin(), mend=observations.end(); mit!=mend; mit++)
         {
             if(mit->first->mnId==mnId)
                 continue;
@@ -343,9 +348,9 @@ void KeyFrame::UpdateConnections()
 
     vector<pair<int,KeyFrame*> > vPairs;
     vPairs.reserve(KFcounter.size());
-    for(map<KeyFrame*,int>::iterator mit=KFcounter.begin(), mend=KFcounter.end(); mit!=mend; mit++)
+    for(auto mit=KFcounter.begin(), mend=KFcounter.end(); mit!=mend; mit++)
     {
-        if(mit->second>nmax)
+        if(mit->second>nmax || (mit->second==nmax && pKFmax && mit->first->mnId<pKFmax->mnId))
         {
             nmax=mit->second;
             pKFmax=mit->first;
@@ -363,7 +368,12 @@ void KeyFrame::UpdateConnections()
         pKFmax->AddConnection(this,nmax);
     }
 
-    sort(vPairs.begin(),vPairs.end());
+    sort(vPairs.begin(), vPairs.end(),
+         [](const pair<int,KeyFrame*>& a, const pair<int,KeyFrame*>& b){
+             if(a.first != b.first)
+                 return a.first < b.first;
+             return a.second->mnId < b.second->mnId;
+         });
     list<KeyFrame*> lKFs;
     list<int> lWs;
     for(size_t i=0; i<vPairs.size();i++)
@@ -409,7 +419,7 @@ void KeyFrame::ChangeParent(KeyFrame *pKF)
     pKF->AddChild(this);
 }
 
-set<KeyFrame*> KeyFrame::GetChilds()
+set<KeyFrame*, KFIdLess> KeyFrame::GetChilds()
 {
     unique_lock<mutex> lockCon(mMutexConnections);
     return mspChildrens;
@@ -434,7 +444,7 @@ void KeyFrame::AddLoopEdge(KeyFrame *pKF)
     mspLoopEdges.insert(pKF);
 }
 
-set<KeyFrame*> KeyFrame::GetLoopEdges()
+set<KeyFrame*, KFIdLess> KeyFrame::GetLoopEdges()
 {
     unique_lock<mutex> lockCon(mMutexConnections);
     return mspLoopEdges;
@@ -475,7 +485,7 @@ void KeyFrame::SetBadFlag()
         }
     }
 
-    for(map<KeyFrame*,int>::iterator mit = mConnectedKeyFrameWeights.begin(), mend=mConnectedKeyFrameWeights.end(); mit!=mend; mit++)
+    for(auto mit = mConnectedKeyFrameWeights.begin(), mend=mConnectedKeyFrameWeights.end(); mit!=mend; mit++)
         mit->first->EraseConnection(this);
 
     for(size_t i=0; i<mvpMapPoints.size(); i++)
@@ -489,7 +499,7 @@ void KeyFrame::SetBadFlag()
         mvpOrderedConnectedKeyFrames.clear();
 
         // Update Spanning Tree
-        set<KeyFrame*> sParentCandidates;
+        set<KeyFrame*, KFIdLess> sParentCandidates;
         sParentCandidates.insert(mpParent);
 
         // Assign at each iteration one children with a parent (the pair with highest covisibility weight)
@@ -499,10 +509,12 @@ void KeyFrame::SetBadFlag()
             bool bContinue = false;
 
             int max = -1;
-            KeyFrame* pC;
-            KeyFrame* pP;
+            KeyFrame* pC = NULL;
+            KeyFrame* pP = NULL;
 
-            for(set<KeyFrame*>::iterator sit=mspChildrens.begin(), send=mspChildrens.end(); sit!=send; sit++)
+            vector<KeyFrame*> vChilds(mspChildrens.begin(), mspChildrens.end());
+            sort(vChilds.begin(), vChilds.end(), KeyFrame::lId);
+            for(vector<KeyFrame*>::iterator sit=vChilds.begin(), send=vChilds.end(); sit!=send; sit++)
             {
                 KeyFrame* pKF = *sit;
                 if(pKF->isBad())
@@ -512,12 +524,12 @@ void KeyFrame::SetBadFlag()
                 vector<KeyFrame*> vpConnected = pKF->GetVectorCovisibleKeyFrames();
                 for(size_t i=0, iend=vpConnected.size(); i<iend; i++)
                 {
-                    for(set<KeyFrame*>::iterator spcit=sParentCandidates.begin(), spcend=sParentCandidates.end(); spcit!=spcend; spcit++)
+                    for(auto spcit=sParentCandidates.begin(), spcend=sParentCandidates.end(); spcit!=spcend; spcit++)
                     {
                         if(vpConnected[i]->mnId == (*spcit)->mnId)
                         {
                             int w = pKF->GetWeight(vpConnected[i]);
-                            if(w>max)
+                            if(w>max || (w==max && pC && pKF->mnId<pC->mnId))
                             {
                                 pC = pKF;
                                 pP = vpConnected[i];
@@ -541,7 +553,7 @@ void KeyFrame::SetBadFlag()
 
         // If a children has no covisibility links with any parent candidate, assign to the original parent of this KF
         if(!mspChildrens.empty())
-            for(set<KeyFrame*>::iterator sit=mspChildrens.begin(); sit!=mspChildrens.end(); sit++)
+            for(auto sit=mspChildrens.begin(); sit!=mspChildrens.end(); sit++)
             {
                 (*sit)->ChangeParent(mpParent);
             }

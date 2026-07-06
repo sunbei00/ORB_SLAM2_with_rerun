@@ -1,0 +1,142 @@
+{
+	"backtrace" : 3,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"ExternalProject_Add",
+			"download_and_build_arrow"
+		],
+		"files" : 
+		[
+			"/root/share/jetbrain/clion-2025.1/bin/cmake/linux/x64/share/cmake-3.31/Modules/ExternalProject.cmake",
+			"cmake-build-debug/_deps/rerun_sdk-src/download_and_build_arrow.cmake",
+			"cmake-build-debug/_deps/rerun_sdk-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 128,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 86,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 2959,
+				"parent" : 2
+			}
+		]
+	},
+	"folder" : 
+	{
+		"name" : "ExternalProjectTargets/arrow_cpp"
+	},
+	"id" : "arrow_cpp::@9027447480fbc0937424",
+	"name" : "arrow_cpp",
+	"paths" : 
+	{
+		"build" : "_deps/rerun_sdk-build",
+		"source" : "cmake-build-debug/_deps/rerun_sdk-src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 3,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp-complete.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-build.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-configure.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-download.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-install.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-mkdir.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-patch.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-update.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

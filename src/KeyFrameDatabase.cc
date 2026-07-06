@@ -83,7 +83,7 @@ void KeyFrameDatabase::clear()
 
 vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float minScore)
 {
-    set<KeyFrame*> spConnectedKeyFrames = pKF->GetConnectedKeyFrames();
+    auto spConnectedKeyFrames = pKF->GetConnectedKeyFrames();
     list<KeyFrame*> lKFsSharingWords;
 
     // Search all keyframes that share a word with current keyframes
@@ -183,7 +183,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float mi
     // Return all those keyframes with a score higher than 0.75*bestScore
     float minScoreToRetain = 0.75f*bestAccScore;
 
-    set<KeyFrame*> spAlreadyAddedKF;
+    set<KeyFrame*, KFIdLess> spAlreadyAddedKF;
     vector<KeyFrame*> vpLoopCandidates;
     vpLoopCandidates.reserve(lAccScoreAndMatch.size());
 
@@ -296,7 +296,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
 
     // Return all those keyframes with a score higher than 0.75*bestScore
     float minScoreToRetain = 0.75f*bestAccScore;
-    set<KeyFrame*> spAlreadyAddedKF;
+    set<KeyFrame*, KFIdLess> spAlreadyAddedKF;
     vector<KeyFrame*> vpRelocCandidates;
     vpRelocCandidates.reserve(lAccScoreAndMatch.size());
     for(list<pair<float,KeyFrame*> >::iterator it=lAccScoreAndMatch.begin(), itend=lAccScoreAndMatch.end(); it!=itend; it++)

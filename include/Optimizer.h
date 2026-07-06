@@ -59,7 +59,7 @@ public:
     void static OptimizeEssentialGraph(Map* pMap, KeyFrame* pLoopKF, KeyFrame* pCurKF,
                                        const LoopClosing::KeyFrameAndPose &NonCorrectedSim3,
                                        const LoopClosing::KeyFrameAndPose &CorrectedSim3,
-                                       const map<KeyFrame *, set<KeyFrame *> > &LoopConnections,
+                                       const LoopClosing::KeyFrameConnectionMap &LoopConnections,
                                        const bool &bFixScale);
 
     // if bFixScale is true, optimize SE3 (stereo,rgbd), Sim3 otherwise (mono)

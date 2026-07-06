@@ -24,6 +24,7 @@
 #include"KeyFrame.h"
 #include"Frame.h"
 #include"Map.h"
+#include"SLAMComparators.h"
 
 #include<opencv2/core/core.hpp>
 #include<mutex>
@@ -48,7 +49,7 @@ public:
     cv::Mat GetNormal();
     KeyFrame* GetReferenceKeyFrame();
 
-    std::map<KeyFrame*,size_t> GetObservations();
+    std::map<KeyFrame*,size_t,KFIdLess> GetObservations();
     int Observations();
 
     void AddObservation(KeyFrame* pKF,size_t idx);
@@ -118,7 +119,7 @@ protected:
      cv::Mat mWorldPos;
 
      // Keyframes observing the point and associated index in keyframe
-     std::map<KeyFrame*,size_t> mObservations;
+     std::map<KeyFrame*,size_t,KFIdLess> mObservations;
 
      // Mean viewing direction
      cv::Mat mNormalVector;

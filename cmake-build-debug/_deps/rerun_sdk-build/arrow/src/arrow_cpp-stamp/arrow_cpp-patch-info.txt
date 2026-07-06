@@ -1,0 +1,6 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The update step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+command=git;apply;--check;/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-src/patches/mimalloc_cmake4.patch;&&;git;apply;/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-src/patches/mimalloc_cmake4.patch;||;true
+work_dir=/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp

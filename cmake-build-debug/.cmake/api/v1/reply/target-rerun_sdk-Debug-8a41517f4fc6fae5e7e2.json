@@ -1,0 +1,4188 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "_deps/rerun_sdk-build/librerun_sdk.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"install",
+			"add_dependencies",
+			"download_and_build_arrow",
+			"target_link_libraries",
+			"target_include_directories",
+			"target_compile_features"
+		],
+		"files" : 
+		[
+			"cmake-build-debug/_deps/rerun_sdk-src/CMakeLists.txt",
+			"cmake-build-debug/_deps/rerun_sdk-src/download_and_build_arrow.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 168,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 128,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 145,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 137,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 30,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -Wall   -O3 -march=native -g -std=c++17 -fPIC -fdiagnostics-color=always"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 5,
+					"define" : "ARROW_STATIC"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 6,
+					"path" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-src/src"
+				},
+				{
+					"backtrace" : 5,
+					"isSystem" : true,
+					"path" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					7
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				2,
+				4,
+				6,
+				7,
+				9,
+				10,
+				12,
+				13,
+				15,
+				16,
+				18,
+				19,
+				21,
+				22,
+				24,
+				25,
+				27,
+				28,
+				30,
+				31,
+				33,
+				35,
+				36,
+				38,
+				39,
+				41,
+				42,
+				44,
+				45,
+				47,
+				49,
+				50,
+				52,
+				54,
+				55,
+				57,
+				59,
+				61,
+				63,
+				64,
+				66,
+				68,
+				70,
+				72,
+				74,
+				76,
+				78,
+				80,
+				82,
+				83,
+				85,
+				87,
+				89,
+				91,
+				93,
+				94,
+				96,
+				97,
+				99,
+				100,
+				102,
+				104,
+				106,
+				107,
+				109,
+				111,
+				113,
+				114,
+				116,
+				118,
+				120,
+				122,
+				126,
+				128,
+				130,
+				132,
+				134,
+				136,
+				138,
+				140,
+				142,
+				144,
+				146,
+				148,
+				150,
+				152,
+				154,
+				156,
+				158,
+				160,
+				162,
+				164,
+				166,
+				168,
+				170,
+				172,
+				174,
+				176,
+				178,
+				180,
+				182,
+				184,
+				186,
+				188,
+				190,
+				192,
+				194,
+				196,
+				198,
+				208,
+				211,
+				215,
+				217,
+				220,
+				231,
+				234,
+				236,
+				239,
+				241,
+				255,
+				267,
+				269,
+				271,
+				273,
+				275,
+				277,
+				279,
+				281,
+				283,
+				285,
+				291,
+				293,
+				296,
+				298,
+				301,
+				304,
+				306,
+				311,
+				316,
+				317,
+				323,
+				324,
+				328,
+				330,
+				332,
+				334,
+				335,
+				338,
+				340,
+				342,
+				344,
+				347,
+				350,
+				354,
+				356,
+				358,
+				361,
+				363,
+				367,
+				368,
+				371,
+				374,
+				377,
+				379,
+				381,
+				384,
+				389,
+				394,
+				399,
+				401,
+				403,
+				406,
+				408,
+				409,
+				412,
+				414,
+				417,
+				419,
+				420,
+				424,
+				426,
+				428,
+				431,
+				433,
+				435,
+				436,
+				438,
+				439,
+				441,
+				442,
+				444,
+				446,
+				448,
+				450,
+				451,
+				453,
+				454,
+				456,
+				458,
+				460,
+				461,
+				463,
+				465,
+				467,
+				469,
+				470,
+				472,
+				474,
+				475,
+				477,
+				478,
+				480,
+				481,
+				483,
+				485,
+				487,
+				488,
+				490,
+				492,
+				494,
+				495,
+				497,
+				498,
+				500,
+				501,
+				503,
+				504,
+				506,
+				508,
+				510,
+				512,
+				514,
+				516,
+				518,
+				520,
+				522,
+				523,
+				525,
+				526,
+				528,
+				530,
+				531,
+				533,
+				534,
+				536,
+				538,
+				539,
+				541,
+				542,
+				544,
+				545,
+				547,
+				549,
+				550,
+				552,
+				554,
+				556,
+				560,
+				563,
+				568,
+				570,
+				572,
+				574,
+				577,
+				579
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "arrow_cpp::@9027447480fbc0937424"
+		}
+	],
+	"id" : "rerun_sdk::@9027447480fbc0937424",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/local"
+		}
+	},
+	"name" : "rerun_sdk",
+	"nameOnDisk" : "librerun_sdk.a",
+	"paths" : 
+	{
+		"build" : "_deps/rerun_sdk-build",
+		"source" : "cmake-build-debug/_deps/rerun_sdk-src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				3,
+				5,
+				8,
+				11,
+				14,
+				17,
+				20,
+				23,
+				26,
+				29,
+				32,
+				34,
+				37,
+				40,
+				43,
+				46,
+				48,
+				51,
+				53,
+				56,
+				58,
+				60,
+				62,
+				65,
+				67,
+				69,
+				71,
+				73,
+				75,
+				77,
+				79,
+				81,
+				84,
+				86,
+				88,
+				90,
+				92,
+				95,
+				98,
+				101,
+				103,
+				105,
+				108,
+				110,
+				112,
+				115,
+				117,
+				119,
+				121,
+				123,
+				124,
+				125,
+				127,
+				129,
+				131,
+				133,
+				135,
+				137,
+				139,
+				141,
+				143,
+				145,
+				147,
+				149,
+				151,
+				153,
+				155,
+				157,
+				159,
+				161,
+				163,
+				165,
+				167,
+				169,
+				171,
+				173,
+				175,
+				177,
+				179,
+				181,
+				183,
+				185,
+				187,
+				189,
+				191,
+				193,
+				195,
+				197,
+				199,
+				200,
+				201,
+				202,
+				203,
+				204,
+				205,
+				206,
+				207,
+				209,
+				210,
+				212,
+				213,
+				214,
+				216,
+				218,
+				219,
+				221,
+				222,
+				223,
+				224,
+				225,
+				226,
+				227,
+				228,
+				229,
+				230,
+				232,
+				233,
+				235,
+				237,
+				238,
+				240,
+				242,
+				243,
+				244,
+				245,
+				246,
+				247,
+				248,
+				249,
+				250,
+				251,
+				252,
+				253,
+				254,
+				256,
+				257,
+				258,
+				259,
+				260,
+				261,
+				262,
+				263,
+				264,
+				265,
+				266,
+				268,
+				270,
+				272,
+				274,
+				276,
+				278,
+				280,
+				282,
+				284,
+				286,
+				287,
+				288,
+				289,
+				290,
+				292,
+				294,
+				295,
+				297,
+				299,
+				300,
+				302,
+				303,
+				305,
+				307,
+				308,
+				309,
+				310,
+				312,
+				313,
+				314,
+				315,
+				318,
+				319,
+				320,
+				321,
+				322,
+				325,
+				326,
+				327,
+				329,
+				331,
+				333,
+				336,
+				337,
+				339,
+				341,
+				343,
+				345,
+				346,
+				348,
+				349,
+				351,
+				352,
+				353,
+				355,
+				357,
+				359,
+				360,
+				362,
+				364,
+				365,
+				366,
+				369,
+				370,
+				372,
+				373,
+				375,
+				376,
+				378,
+				380,
+				382,
+				383,
+				385,
+				386,
+				387,
+				388,
+				390,
+				391,
+				392,
+				393,
+				395,
+				396,
+				397,
+				398,
+				400,
+				402,
+				404,
+				405,
+				407,
+				410,
+				411,
+				413,
+				415,
+				416,
+				418,
+				421,
+				422,
+				423,
+				425,
+				427,
+				429,
+				430,
+				432,
+				434,
+				437,
+				440,
+				443,
+				445,
+				447,
+				449,
+				452,
+				455,
+				457,
+				459,
+				462,
+				464,
+				466,
+				468,
+				471,
+				473,
+				476,
+				479,
+				482,
+				484,
+				486,
+				489,
+				491,
+				493,
+				496,
+				499,
+				502,
+				505,
+				507,
+				509,
+				511,
+				513,
+				515,
+				517,
+				519,
+				521,
+				524,
+				527,
+				529,
+				532,
+				535,
+				537,
+				540,
+				543,
+				546,
+				548,
+				551,
+				553,
+				555,
+				557,
+				558,
+				559,
+				561,
+				562,
+				564,
+				565,
+				566,
+				567,
+				569,
+				571,
+				573,
+				575,
+				576,
+				578,
+				580,
+				581
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				2,
+				4,
+				6,
+				7,
+				9,
+				10,
+				12,
+				13,
+				15,
+				16,
+				18,
+				19,
+				21,
+				22,
+				24,
+				25,
+				27,
+				28,
+				30,
+				31,
+				33,
+				35,
+				36,
+				38,
+				39,
+				41,
+				42,
+				44,
+				45,
+				47,
+				49,
+				50,
+				52,
+				54,
+				55,
+				57,
+				59,
+				61,
+				63,
+				64,
+				66,
+				68,
+				70,
+				72,
+				74,
+				76,
+				78,
+				80,
+				82,
+				83,
+				85,
+				87,
+				89,
+				91,
+				93,
+				94,
+				96,
+				97,
+				99,
+				100,
+				102,
+				104,
+				106,
+				107,
+				109,
+				111,
+				113,
+				114,
+				116,
+				118,
+				120,
+				122,
+				126,
+				128,
+				130,
+				132,
+				134,
+				136,
+				138,
+				140,
+				142,
+				144,
+				146,
+				148,
+				150,
+				152,
+				154,
+				156,
+				158,
+				160,
+				162,
+				164,
+				166,
+				168,
+				170,
+				172,
+				174,
+				176,
+				178,
+				180,
+				182,
+				184,
+				186,
+				188,
+				190,
+				192,
+				194,
+				196,
+				198,
+				208,
+				211,
+				215,
+				217,
+				220,
+				231,
+				234,
+				236,
+				239,
+				241,
+				255,
+				267,
+				269,
+				271,
+				273,
+				275,
+				277,
+				279,
+				281,
+				283,
+				285,
+				291,
+				293,
+				296,
+				298,
+				301,
+				304,
+				306,
+				311,
+				316,
+				317,
+				323,
+				324,
+				328,
+				330,
+				332,
+				334,
+				335,
+				338,
+				340,
+				342,
+				344,
+				347,
+				350,
+				354,
+				356,
+				358,
+				361,
+				363,
+				367,
+				368,
+				371,
+				374,
+				377,
+				379,
+				381,
+				384,
+				389,
+				394,
+				399,
+				401,
+				403,
+				406,
+				408,
+				409,
+				412,
+				414,
+				417,
+				419,
+				420,
+				424,
+				426,
+				428,
+				431,
+				433,
+				435,
+				436,
+				438,
+				439,
+				441,
+				442,
+				444,
+				446,
+				448,
+				450,
+				451,
+				453,
+				454,
+				456,
+				458,
+				460,
+				461,
+				463,
+				465,
+				467,
+				469,
+				470,
+				472,
+				474,
+				475,
+				477,
+				478,
+				480,
+				481,
+				483,
+				485,
+				487,
+				488,
+				490,
+				492,
+				494,
+				495,
+				497,
+				498,
+				500,
+				501,
+				503,
+				504,
+				506,
+				508,
+				510,
+				512,
+				514,
+				516,
+				518,
+				520,
+				522,
+				523,
+				525,
+				526,
+				528,
+				530,
+				531,
+				533,
+				534,
+				536,
+				538,
+				539,
+				541,
+				542,
+				544,
+				545,
+				547,
+				549,
+				550,
+				552,
+				554,
+				556,
+				560,
+				563,
+				568,
+				570,
+				572,
+				574,
+				577,
+				579
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/annotation_context.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/annotation_context.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/arrows2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/arrows2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/arrows2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/arrows3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/arrows3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/arrows3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/asset3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/asset3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/asset3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/asset_video.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/asset_video.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/asset_video_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/bar_chart.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/bar_chart.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/bar_chart_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/boxes2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/boxes2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/boxes2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/boxes3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/boxes3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/boxes3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/capsules3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/capsules3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/capsules3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/clear.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/clear.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/clear_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/coordinate_frame.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/coordinate_frame.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/cylinders3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/cylinders3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/cylinders3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/depth_image.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/depth_image.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/depth_image_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/ellipses2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/ellipses2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/ellipses2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/ellipsoids3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/ellipsoids3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/ellipsoids3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/encoded_depth_image.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/encoded_depth_image.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/encoded_image.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/encoded_image.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/encoded_image_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/geo_line_strings.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/geo_line_strings.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/geo_points.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/geo_points.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/geo_points_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/graph_edges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/graph_edges.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/graph_nodes.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/graph_nodes.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/grid_map.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/grid_map.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/image.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/image.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/image_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/instance_poses3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/instance_poses3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/line_strips2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/line_strips2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/line_strips3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/line_strips3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mcap_channel.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mcap_channel.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mcap_message.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mcap_message.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mcap_schema.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mcap_schema.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mcap_statistics.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mcap_statistics.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mesh3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/mesh3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/pinhole.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/pinhole.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/pinhole_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/points2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/points2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/points3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/points3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/recording_info.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/recording_info.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/scalars.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/scalars.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/segmentation_image.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/segmentation_image.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/segmentation_image_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/series_lines.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/series_lines.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/series_lines_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/series_points.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/series_points.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/series_points_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/state_change.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/state_change.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/state_configuration.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/state_configuration.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/tensor.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/tensor.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/tensor_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/text_document.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/text_document.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/text_log.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/text_log.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/transform3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/transform3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/transform3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/transform_axes3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/transform_axes3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/video_frame_reference.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/video_frame_reference.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/video_stream.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/video_stream.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/view_coordinates.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/view_coordinates.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/archetypes/view_coordinates_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/arrow_utils.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/as_components.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/active_visualizers.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/active_visualizers.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/background.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/background.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/container_blueprint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/container_blueprint.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/dataframe_query.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/dataframe_query.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/entity_behavior.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/entity_behavior.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/eye_controls3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/eye_controls3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_center.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_center.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_collision_radius.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_collision_radius.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_link.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_link.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_many_body.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_many_body.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_position.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/force_position.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/graph_background.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/graph_background.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/line_grid3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/line_grid3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/map_background.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/map_background.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/map_zoom.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/map_zoom.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/near_clip_plane.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/near_clip_plane.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/panel_blueprint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/panel_blueprint.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/plot_background.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/plot_background.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/plot_legend.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/plot_legend.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/scalar_axis.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/scalar_axis.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/spatial_information.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/spatial_information.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/table_blueprint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/table_blueprint.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/tensor_scalar_mapping.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/tensor_scalar_mapping.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/tensor_slice_selection.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/tensor_slice_selection.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/tensor_view_fit.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/tensor_view_fit.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/text_document_format.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/text_document_format.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/text_log_columns.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/text_log_columns.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/text_log_format.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/text_log_format.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/text_log_rows.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/text_log_rows.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/time_axis.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/time_axis.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/time_panel_blueprint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/time_panel_blueprint.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/view_blueprint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/view_blueprint.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/view_contents.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/view_contents.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/viewport_blueprint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/viewport_blueprint.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/visible_time_ranges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/visible_time_ranges.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/visual_bounds2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/visual_bounds2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/visualizer_instruction.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/archetypes/visualizer_instruction.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/absolute_time_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/active_tab.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/angular_speed.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/apply_latest_at.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/auto_layout.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/auto_scroll.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/auto_views.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/background_kind.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/background_kind.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/column_name.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/column_order.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/column_order.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/column_share.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/component_column_selector.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/container_kind.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/container_kind.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/corner2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/corner2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/enabled.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/eye3d_kind.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/eye3d_kind.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/filter_by_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/filter_is_not_null.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/force_distance.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/force_iterations.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/force_strength.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/fps.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/grid_columns.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/grid_spacing.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/included_content.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/link_axis.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/link_axis.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/lock_range_during_zoom.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/loop_mode.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/loop_mode.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/map_provider.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/map_provider.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/near_clip_plane.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/panel_state.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/panel_state.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/play_state.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/play_state.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/playback_speed.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/query_expression.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/root_container.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/row_share.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/selected_columns.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/tensor_dimension_index_slider.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/text_log_column.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/time_int.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/time_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/timeline_column.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/timeline_name.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/view_class.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/view_fit.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/view_fit.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/view_maximized.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/view_origin.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/viewer_recommendation_hash.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/visible_time_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/visual_bounds2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/visualizer_component_mapping.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/visualizer_instruction_id.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/visualizer_type.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/components/zoom_level.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/component_column_selector.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/component_column_selector.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/component_source_kind.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/component_source_kind.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/filter_by_range.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/filter_by_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/filter_is_not_null.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/filter_is_not_null.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/selected_columns.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/selected_columns.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/tensor_dimension_index_slider.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/tensor_dimension_index_slider.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/text_log_column.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/text_log_column.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/text_log_column_kind.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/text_log_column_kind.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/timeline_column.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/timeline_column.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/visualizer_component_mapping.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/blueprint/datatypes/visualizer_component_mapping.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/collection.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/collection_adapter.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/collection_adapter_builtins.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/compiler_utils.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_batch.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_batch.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_column.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_column.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_descriptor.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_type.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_type.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_type_registry.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/component_type_registry.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/aggregation_policy.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/aggregation_policy.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/albedo_factor.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/annotation_context.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/annotation_context.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/annotation_context_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/axis_length.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/blob.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/cell_size.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/channel_id.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/channel_message_counts.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/channel_message_counts.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/class_id.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/clear_is_recursive.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/color.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/color_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/colormap.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/colormap.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/count.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/depth_meter.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/draw_order.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/entity_path.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/entity_path_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/fill_mode.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/fill_mode.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/fill_ratio.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/gamma_correction.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/geo_line_string.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/geo_line_string.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/geo_line_string_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/graph_edge.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/graph_edge_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/graph_node.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/graph_node_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/graph_type.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/graph_type.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/half_size2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/half_size2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/half_size3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/half_size3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/image_buffer.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/image_buffer_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/image_format.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/image_format_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/image_plane_distance.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/interactive.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/interpolation_mode.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/interpolation_mode.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/is_keyframe.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/key_value_pairs.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/key_value_pairs.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/keypoint_id.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/lat_lon.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/lat_lon_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/length.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/line_strip2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/line_strip2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/line_strip3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/line_strip3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/linear_speed.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/magnification_filter.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/magnification_filter.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/marker_shape.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/marker_shape.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/marker_size.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/media_type.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/media_type_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/mesh_face_rendering.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/mesh_face_rendering.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/name.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/name_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/opacity.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/pinhole_projection.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/pinhole_projection_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/plane3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/position2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/position2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/position3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/position3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/radius.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/radius_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/range1d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/resolution.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/resolution_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/rotation_axis_angle.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/rotation_quat.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/scalar.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/scale3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/scale3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/schema_id.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/show_labels.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/stroke_width.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/tensor_data.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/tensor_data_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/tensor_dimension_index_selection.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/tensor_height_dimension.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/tensor_width_dimension.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/texcoord2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/texcoord2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/text.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/text_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/text_log_level.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/text_log_level_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/timestamp.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/transform_frame_id.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/transform_frame_id_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/transform_mat3x3.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/transform_mat3x3_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/transform_relation.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/transform_relation.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/translation3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/translation3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/triangle_indices.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/triangle_indices_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/value_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/vector2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/vector2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/vector3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/vector3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/video_codec.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/video_codec.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/video_sample.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/video_timestamp.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/video_timestamp_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/view_coordinates.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/view_coordinates_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/components/visible.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/config.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/config.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/absolute_time_range.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/absolute_time_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/angle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/angle.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/angle_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/annotation_info.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/annotation_info.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/annotation_info_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/blob.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/blob.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/blob_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/bool.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/bool.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/channel_count_pair.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/channel_count_pair.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/channel_datatype.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/channel_datatype.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/class_description.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/class_description.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/class_description_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/class_description_map_elem.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/class_description_map_elem.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/class_description_map_elem_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/class_id.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/class_id.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/color_model.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/color_model.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/dvec2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/dvec2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/dvec2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/entity_path.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/entity_path.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/float32.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/float32.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/float64.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/float64.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/image_format.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/image_format.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/image_format_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/keypoint_id.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/keypoint_id.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/keypoint_pair.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/keypoint_pair.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/keypoint_pair_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/mat3x3.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/mat3x3.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/mat3x3_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/mat4x4.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/mat4x4.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/mat4x4_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/pixel_format.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/pixel_format.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/plane3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/plane3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/quaternion.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/quaternion.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/quaternion_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/range1d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/range1d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/range2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/range2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/rgba32.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/rgba32.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/rgba32_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/rotation_axis_angle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/rotation_axis_angle.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/rotation_axis_angle_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_buffer.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_buffer.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_buffer_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_data.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_data.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_data_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_dimension_index_selection.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_dimension_index_selection.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_dimension_selection.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/tensor_dimension_selection.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/time_int.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/time_int.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/time_range.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/time_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/time_range_boundary.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/time_range_boundary.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uint16.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uint16.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uint32.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uint32.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uint64.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uint64.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/utf8.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/utf8.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/utf8_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/utf8pair.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/utf8pair.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/utf8pair_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uuid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uuid.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uvec2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uvec2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uvec2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uvec3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uvec3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uvec3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uvec4d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/uvec4d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec2d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec2d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec2d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec3d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec3d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec4d.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec4d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/vec4d_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/video_timestamp.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/video_timestamp.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/view_coordinates.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/view_coordinates.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/view_coordinates_ext.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/visible_time_range.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/datatypes/visible_time_range.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/demo_utils.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/demo_utils.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/entity_path.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/entity_path.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/error.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/error.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/half.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/image_utils.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/log_sink.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/log_sink.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/loggable.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/recording_stream.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/recording_stream.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/rerun_sdk_export.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/result.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/rotation3d.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/sdk_info.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/sdk_info.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/spawn.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/spawn.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/spawn_options.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/spawn_options.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/string_utils.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/string_utils.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/third_party/cxxopts.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/time_column.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/time_column.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/timeline.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/timeline.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "cmake-build-debug/_deps/rerun_sdk-src/src/rerun/type_traits.hpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

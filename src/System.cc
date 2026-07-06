@@ -24,6 +24,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <Eigen/Core>
 #include <thread>
 #include <iomanip>
 #include <algorithm>
@@ -41,14 +42,17 @@
 #include "MapDrawer.h"
 #include "Tracking.h"
 #include "Viewer.h"
+#include "Thirdparty/DBoW2/DUtils/Random.h"
 
 namespace ORB_SLAM2
 {
 class MapPoint;
 
 System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor,
-               const bool bUseViewer):mSensor(sensor), mpViewer(static_cast<Viewer*>(NULL)), mbReset(false),mbActivateLocalizationMode(false),
-        mbDeactivateLocalizationMode(false)
+               const bool bUseViewer):mSensor(sensor), mbOfflineMode(false), mpViewer(static_cast<Viewer*>(NULL)),
+        mptLocalMapping(static_cast<thread*>(NULL)), mptLoopClosing(static_cast<thread*>(NULL)),
+        mptViewer(static_cast<thread*>(NULL)), mbReset(false),mbActivateLocalizationMode(false),
+        mbDeactivateLocalizationMode(false), mBAInterval(1), mFrameCNT(0)
 {
     // Output welcome message
     cout << endl <<
@@ -74,6 +78,46 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
        exit(-1);
     }
 
+    cv::FileNode offlineNode = fsSettings["offline.enabled"];
+    if(!offlineNode.empty())
+        mbOfflineMode = static_cast<int>(offlineNode) != 0;
+
+    cv::FileNode offlineIntervalNode = fsSettings["offline.interval"];
+    if(!offlineIntervalNode.empty())
+    {
+        mBAInterval = static_cast<int>(offlineIntervalNode);
+        if(mBAInterval < 1)
+            mBAInterval = 1;
+    }
+
+    if(mbOfflineMode)
+    {
+        setenv("OPENBLAS_NUM_THREADS", "1", 1);
+        setenv("BLIS_NUM_THREADS", "1", 1);
+        setenv("MKL_NUM_THREADS", "1", 1);
+        setenv("OMP_NUM_THREADS", "1", 1);
+        setenv("GOTO_NUM_THREADS", "1", 1);
+        Eigen::setNbThreads(1);
+
+        cv::setNumThreads(1);
+        cv::setRNGSeed(0);
+        Frame::SetUseParallelStereoExtraction(false);
+        // MODIFIED for "seeding DUtils random in offline mode for deterministic RANSAC"
+        DUtils::Random::SeedRand(0);
+        cout << "SLAM execution mode: offline (single-thread deterministic backend)" << endl;
+        if(mBAInterval == 1)
+            cout << "Offline LocalMapping Local BA: every frame" << endl;
+        else
+            cout << "Offline LocalMapping Local BA: every " << mBAInterval << " frames" << endl;
+        if(bUseViewer)
+            cout << "Offline mode: Rerun viewer enabled; Pangolin/OpenCV viewer thread suppressed." << endl;
+    }
+    else
+    {
+        Frame::SetUseParallelStereoExtraction(true);
+        cout << "SLAM execution mode: online (default asynchronous backend)" << endl;
+    }
+
 
     //Load ORB Vocabulary
     cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
@@ -96,7 +140,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     //Create Drawers. These are used by the Viewer
     mpFrameDrawer = new FrameDrawer(mpMap);
-    mpMapDrawer = new MapDrawer(mpMap, strSettingsFile);
+    mpMapDrawer = new MapDrawer(mpMap, strSettingsFile, bUseViewer);
 
     //Initialize the Tracking thread
     //(it will live in the main thread of execution, the one that called this constructor)
@@ -105,14 +149,18 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     //Initialize the Local Mapping thread and launch
     mpLocalMapper = new LocalMapping(mpMap, mSensor==MONOCULAR);
-    mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run,mpLocalMapper);
+    mpLocalMapper->SetRunSynchronously(mbOfflineMode);
+    if(!mbOfflineMode)
+        mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run,mpLocalMapper);
 
     //Initialize the Loop Closing thread and launch
     mpLoopCloser = new LoopClosing(mpMap, mpKeyFrameDatabase, mpVocabulary, mSensor!=MONOCULAR);
-    mptLoopClosing = new thread(&ORB_SLAM2::LoopClosing::Run, mpLoopCloser);
+    mpLoopCloser->SetRunSynchronously(mbOfflineMode);
+    if(!mbOfflineMode)
+        mptLoopClosing = new thread(&ORB_SLAM2::LoopClosing::Run, mpLoopCloser);
 
     //Initialize the Viewer thread and launch
-    if(bUseViewer)
+    if(bUseViewer && !mbOfflineMode)
     {
         mpViewer = new Viewer(this, mpFrameDrawer,mpMapDrawer,mpTracker,strSettingsFile);
         mptViewer = new thread(&Viewer::Run, mpViewer);
@@ -172,7 +220,10 @@ cv::Mat System::TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight, const
     }
     }
 
+    mFrameCNT++;
     cv::Mat Tcw = mpTracker->GrabImageStereo(imLeft,imRight,timestamp);
+    BackendOffline();
+    LogRerunFrame();
 
     unique_lock<mutex> lock2(mMutexState);
     mTrackingState = mpTracker->mState;
@@ -223,7 +274,10 @@ cv::Mat System::TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap, const doub
     }
     }
 
+    mFrameCNT++;
     cv::Mat Tcw = mpTracker->GrabImageRGBD(im,depthmap,timestamp);
+    BackendOffline();
+    LogRerunFrame();
 
     unique_lock<mutex> lock2(mMutexState);
     mTrackingState = mpTracker->mState;
@@ -274,7 +328,10 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
     }
     }
 
+    mFrameCNT++;
     cv::Mat Tcw = mpTracker->GrabImageMonocular(im,timestamp);
+    BackendOffline();
+    LogRerunFrame();
 
     unique_lock<mutex> lock2(mMutexState);
     mTrackingState = mpTracker->mState;
@@ -312,11 +369,14 @@ bool System::MapChanged()
 void System::Reset()
 {
     unique_lock<mutex> lock(mMutexReset);
+    mFrameCNT = 0;
     mbReset = true;
 }
 
 void System::Shutdown()
 {
+    LogRerunFrame();
+
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
     if(mpViewer)
@@ -332,6 +392,16 @@ void System::Shutdown()
         usleep(5000);
     }
 
+}
+
+void System::LogRerunFrame()
+{
+    if(!mbOfflineMode || !mpMapDrawer)
+        return;
+
+    mpMapDrawer->DrawCurrentCamera();
+    mpMapDrawer->DrawKeyFrames(true, true);
+    mpMapDrawer->DrawMapPoints();
 }
 
 void System::SaveTrajectoryTUM(const string &filename)
@@ -494,4 +564,11 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
     return mTrackedKeyPointsUn;
 }
 
+void System::BackendOffline() const {
+    if (!mbOfflineMode)
+        return;
+    mpLocalMapper->ProcessNewKeyFrameOffline();
+    if(mFrameCNT % mBAInterval == 0)
+        mpLocalMapper->LocalBAOffline();
+}
 } //namespace ORB_SLAM

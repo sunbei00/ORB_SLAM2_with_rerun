@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp.rule"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp-complete.rule"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-build.rule"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-configure.rule"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-download.rule"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-install.rule"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-mkdir.rule"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-patch.rule"
+		},
+		{
+			"file" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"arrow_cpp"
+		],
+		"name" : "arrow_cpp"
+	}
+}

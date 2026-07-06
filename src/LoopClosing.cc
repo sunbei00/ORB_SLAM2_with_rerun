@@ -48,7 +48,7 @@ namespace ORB_SLAM2
 {
 
 LoopClosing::LoopClosing(Map *pMap, KeyFrameDatabase *pDB, ORBVocabulary *pVoc, const bool bFixScale):
-    mbResetRequested(false), mbFinishRequested(false), mbFinished(true), mpMap(pMap),
+    mbResetRequested(false), mbFinishRequested(false), mbFinished(true), mbRunSynchronously(false), mpMap(pMap),
     mpKeyFrameDB(pDB), mpORBVocabulary(pVoc), mpMatchedKF(NULL), mLastLoopKFid(0), mbRunningGBA(false), mbFinishedGBA(true),
     mbStopGBA(false), mpThreadGBA(NULL), mbFixScale(bFixScale), mnFullBAIdx(0)
 {
@@ -86,7 +86,7 @@ void LoopClosing::Run()
                    CorrectLoop();
                }
             }
-        }       
+        }
 
         ResetIfRequested();
 
@@ -97,6 +97,11 @@ void LoopClosing::Run()
     }
 
     SetFinish();
+}
+
+void LoopClosing::SetRunSynchronously(bool flag)
+{
+    mbRunSynchronously = flag;
 }
 
 void LoopClosing::InsertKeyFrame(KeyFrame *pKF)
@@ -173,17 +178,17 @@ bool LoopClosing::DetectLoop()
     {
         KeyFrame* pCandidateKF = vpCandidateKFs[i];
 
-        set<KeyFrame*> spCandidateGroup = pCandidateKF->GetConnectedKeyFrames();
+        auto spCandidateGroup = pCandidateKF->GetConnectedKeyFrames();
         spCandidateGroup.insert(pCandidateKF);
 
         bool bEnoughConsistent = false;
         bool bConsistentForSomeGroup = false;
         for(size_t iG=0, iendG=mvConsistentGroups.size(); iG<iendG; iG++)
         {
-            set<KeyFrame*> sPreviousGroup = mvConsistentGroups[iG].first;
+            auto sPreviousGroup = mvConsistentGroups[iG].first;
 
             bool bConsistent = false;
-            for(set<KeyFrame*>::iterator sit=spCandidateGroup.begin(), send=spCandidateGroup.end(); sit!=send;sit++)
+            for(auto sit=spCandidateGroup.begin(), send=spCandidateGroup.end(); sit!=send;sit++)
             {
                 if(sPreviousGroup.count(*sit))
                 {
@@ -555,7 +560,7 @@ void LoopClosing::CorrectLoop()
 
 
     // After the MapPoint fusion, new links in the covisibility graph will appear attaching both sides of the loop
-    map<KeyFrame*, set<KeyFrame*> > LoopConnections;
+    KeyFrameConnectionMap LoopConnections;
 
     for(vector<KeyFrame*>::iterator vit=mvpCurrentConnectedKFs.begin(), vend=mvpCurrentConnectedKFs.end(); vit!=vend; vit++)
     {
@@ -584,11 +589,14 @@ void LoopClosing::CorrectLoop()
     mpMatchedKF->AddLoopEdge(mpCurrentKF);
     mpCurrentKF->AddLoopEdge(mpMatchedKF);
 
-    // Launch a new thread to perform Global Bundle Adjustment
+    // Launch or run Global Bundle Adjustment.
     mbRunningGBA = true;
     mbFinishedGBA = false;
     mbStopGBA = false;
-    mpThreadGBA = new thread(&LoopClosing::RunGlobalBundleAdjustment,this,mpCurrentKF->mnId);
+    if(mbRunSynchronously)
+        RunGlobalBundleAdjustment(mpCurrentKF->mnId);
+    else
+        mpThreadGBA = new thread(&LoopClosing::RunGlobalBundleAdjustment,this,mpCurrentKF->mnId);
 
     // Loop closed. Release Local Mapping.
     mpLocalMapper->Release();    
@@ -630,6 +638,12 @@ void LoopClosing::RequestReset()
     {
         unique_lock<mutex> lock(mMutexReset);
         mbResetRequested = true;
+    }
+
+    if(mbRunSynchronously)
+    {
+        ResetIfRequested();
+        return;
     }
 
     while(1)
@@ -691,9 +705,9 @@ void LoopClosing::RunGlobalBundleAdjustment(unsigned long nLoopKF)
             while(!lpKFtoCheck.empty())
             {
                 KeyFrame* pKF = lpKFtoCheck.front();
-                const set<KeyFrame*> sChilds = pKF->GetChilds();
+                const auto sChilds = pKF->GetChilds();
                 cv::Mat Twc = pKF->GetPoseInverse();
-                for(set<KeyFrame*>::const_iterator sit=sChilds.begin();sit!=sChilds.end();sit++)
+                for(auto sit=sChilds.begin();sit!=sChilds.end();sit++)
                 {
                     KeyFrame* pChild = *sit;
                     if(pChild->mnBAGlobalForKF!=nLoopKF)

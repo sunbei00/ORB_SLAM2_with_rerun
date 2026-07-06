@@ -1,4 +1,6 @@
 %YAML:1.0
+offline.enabled: 0
+offline.interval: 10
 
 #--------------------------------------------------------------------------------------------
 # Camera Parameters. Adjust them!
@@ -67,4 +69,3 @@ Viewer.ViewpointX: 0
 Viewer.ViewpointY: -0.7
 Viewer.ViewpointZ: -1.8
 Viewer.ViewpointF: 500
-

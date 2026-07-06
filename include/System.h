@@ -123,9 +123,12 @@ public:
     std::vector<cv::KeyPoint> GetTrackedKeyPointsUn();
 
 private:
+    void BackendOffline() const;
+    void LogRerunFrame();
 
     // Input sensor
     eSensor mSensor;
+    bool mbOfflineMode;
 
     // ORB vocabulary used for place recognition and feature matching.
     ORBVocabulary* mpVocabulary;
@@ -148,7 +151,7 @@ private:
     // a pose graph optimization and full bundle adjustment (in a new thread) afterwards.
     LoopClosing* mpLoopCloser;
 
-    // The viewer draws the map and the current camera pose. It uses Pangolin.
+    // The viewer draws the map and the current camera pose.
     Viewer* mpViewer;
 
     FrameDrawer* mpFrameDrawer;
@@ -174,6 +177,11 @@ private:
     std::vector<MapPoint*> mTrackedMapPoints;
     std::vector<cv::KeyPoint> mTrackedKeyPointsUn;
     std::mutex mMutexState;
+
+    // Offline Local BA counting
+    int mBAInterval;
+    int mFrameCNT;
+
 };
 
 }// namespace ORB_SLAM

@@ -63,6 +63,7 @@ public:
 
     // Extract ORB on the image. 0 for left image and 1 for right image.
     void ExtractORB(int flag, const cv::Mat &im);
+    static void SetUseParallelStereoExtraction(bool flag);
 
     // Compute Bag of Words representation.
     void ComputeBoW();
@@ -190,6 +191,7 @@ public:
     static float mnMaxY;
 
     static bool mbInitialComputations;
+    static bool mbUseParallelStereoExtraction;
 
 
 private:

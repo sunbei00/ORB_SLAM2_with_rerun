@@ -1,4 +1,6 @@
 %YAML:1.0
+offline.enabled: 1
+offline.interval: 10
 
 #--------------------------------------------------------------------------------------------
 # Camera Parameters. Adjust them!

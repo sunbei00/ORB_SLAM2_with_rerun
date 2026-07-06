@@ -27,6 +27,7 @@
 
 #include "MapPoint.h"
 #include "KeyFrame.h"
+#include "SLAMComparators.h"
 
 
 
@@ -68,8 +69,8 @@ public:
     std::mutex mMutexPointCreation;
 
 protected:
-    std::set<MapPoint*> mspMapPoints;
-    std::set<KeyFrame*> mspKeyFrames;
+    std::set<MapPoint*, MPIdLess> mspMapPoints;
+    std::set<KeyFrame*, KFIdLess> mspKeyFrames;
 
     std::vector<MapPoint*> mvpReferenceMapPoints;
 

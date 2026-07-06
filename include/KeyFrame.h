@@ -35,6 +35,7 @@
 #include "ORBextractor.h"
 #include "Frame.h"
 #include "KeyFrameDatabase.h"
+#include "SLAMComparators.h"
 
 
 namespace ORB_SLAM2
@@ -67,7 +68,7 @@ public:
     void EraseConnection(KeyFrame* pKF);
     void UpdateConnections();
     void UpdateBestCovisibles();
-    std::set<KeyFrame *> GetConnectedKeyFrames();
+    std::set<KeyFrame*, KFIdLess> GetConnectedKeyFrames();
     std::vector<KeyFrame* > GetVectorCovisibleKeyFrames();
     std::vector<KeyFrame*> GetBestCovisibilityKeyFrames(const int &N);
     std::vector<KeyFrame*> GetCovisiblesByWeight(const int &w);
@@ -77,20 +78,20 @@ public:
     void AddChild(KeyFrame* pKF);
     void EraseChild(KeyFrame* pKF);
     void ChangeParent(KeyFrame* pKF);
-    std::set<KeyFrame*> GetChilds();
+    std::set<KeyFrame*, KFIdLess> GetChilds();
     KeyFrame* GetParent();
     bool hasChild(KeyFrame* pKF);
 
     // Loop Edges
     void AddLoopEdge(KeyFrame* pKF);
-    std::set<KeyFrame*> GetLoopEdges();
+    std::set<KeyFrame*, KFIdLess> GetLoopEdges();
 
     // MapPoint observation functions
     void AddMapPoint(MapPoint* pMP, const size_t &idx);
     void EraseMapPointMatch(const size_t &idx);
     void EraseMapPointMatch(MapPoint* pMP);
     void ReplaceMapPointMatch(const size_t &idx, MapPoint* pMP);
-    std::set<MapPoint*> GetMapPoints();
+    std::set<MapPoint*, MPIdLess> GetMapPoints();
     std::vector<MapPoint*> GetMapPointMatches();
     int TrackedMapPoints(const int &minObs);
     MapPoint* GetMapPoint(const size_t &idx);
@@ -214,15 +215,15 @@ protected:
     // Grid over the image to speed up feature matching
     std::vector< std::vector <std::vector<size_t> > > mGrid;
 
-    std::map<KeyFrame*,int> mConnectedKeyFrameWeights;
+    std::map<KeyFrame*,int,KFIdLess> mConnectedKeyFrameWeights;
     std::vector<KeyFrame*> mvpOrderedConnectedKeyFrames;
     std::vector<int> mvOrderedWeights;
 
     // Spanning Tree and Loop Edges
     bool mbFirstConnection;
     KeyFrame* mpParent;
-    std::set<KeyFrame*> mspChildrens;
-    std::set<KeyFrame*> mspLoopEdges;
+    std::set<KeyFrame*, KFIdLess> mspChildrens;
+    std::set<KeyFrame*, KFIdLess> mspLoopEdges;
 
     // Bad flags
     bool mbNotErase;

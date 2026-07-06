@@ -990,7 +990,7 @@ int ORBmatcher::Fuse(KeyFrame *pKF, cv::Mat Scw, const vector<MapPoint *> &vpPoi
     cv::Mat Ow = -Rcw.t()*tcw;
 
     // Set of MapPoints already found in the KeyFrame
-    const set<MapPoint*> spAlreadyFound = pKF->GetMapPoints();
+    const auto spAlreadyFound = pKF->GetMapPoints();
 
     int nFused=0;
 

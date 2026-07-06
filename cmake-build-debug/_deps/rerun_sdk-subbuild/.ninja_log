@@ -1,0 +1,21 @@
+# ninja log v6
+1	14	1783303539839940572	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-mkdir	6e6a22ea95d0ce71
+1	14	1783303539839940572	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-mkdir	6e6a22ea95d0ce71
+15	2559	1783303542384942619	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-download	91d517bad41bac8
+15	2559	1783303542384942619	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-download	91d517bad41bac8
+2559	2567	1783303542392942625	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-update	234fdb5a2749008f
+2559	2567	1783303542392942625	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-update	234fdb5a2749008f
+2567	2575	1783303542399942631	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-patch	dadde0cea84bdfd7
+2567	2575	1783303542399942631	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-patch	dadde0cea84bdfd7
+2575	2581	1783303542406942636	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-configure	167044b2080c043
+2575	2581	1783303542406942636	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-configure	167044b2080c043
+2581	2589	1783303542414942643	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-build	2b4790c54c91480d
+2581	2589	1783303542414942643	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-build	2b4790c54c91480d
+2589	2596	1783303542420942648	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-install	56b2aab3ffc18e9d
+2589	2596	1783303542420942648	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-install	56b2aab3ffc18e9d
+2596	2603	1783303542427942653	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-test	6712c12aa373de8c
+2596	2603	1783303542427942653	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-test	6712c12aa373de8c
+2603	2610	1783303542435942660	CMakeFiles/rerun_sdk-populate-complete	c77ad8bbb9bd46e
+2603	2610	1783303542435942660	rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-done	c77ad8bbb9bd46e
+2603	2610	1783303542435942660	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/CMakeFiles/rerun_sdk-populate-complete	c77ad8bbb9bd46e
+2603	2610	1783303542435942660	/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-subbuild/rerun_sdk-populate-prefix/src/rerun_sdk-populate-stamp/rerun_sdk-populate-done	c77ad8bbb9bd46e

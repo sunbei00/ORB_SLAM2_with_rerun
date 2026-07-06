@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JointSLAM Offline Determinism Fix</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', 'Noto Sans KR', sans-serif; background: #0f1117; color: #e2e8f0; line-height: 1.7; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 48px 32px; }
+
+  h1 { font-size: 2rem; font-weight: 700; color: #f8fafc; margin-bottom: 8px; }
+  h2 { font-size: 1.35rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .08em;
+       margin: 48px 0 16px; border-bottom: 1px solid #1e293b; padding-bottom: 8px; }
+  h3 { font-size: 1.1rem; font-weight: 600; color: #e2e8f0; margin: 28px 0 10px; }
+  h4 { font-size: .9rem; font-weight: 600; color: #94a3b8; margin: 16px 0 6px; text-transform: uppercase; letter-spacing: .06em; }
+
+  .subtitle { color: #64748b; font-size: .95rem; margin-bottom: 48px; }
+
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; }
+  .card.alert { border-left: 4px solid #f59e0b; background: #1c1a10; }
+  .card.success { border-left: 4px solid #22c55e; background: #0f1a14; }
+  .card.info   { border-left: 4px solid #3b82f6; background: #0f1625; }
+
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: .75rem; font-weight: 600;
+           letter-spacing: .04em; text-transform: uppercase; margin-right: 8px; }
+  .badge-red    { background: #3f1415; color: #f87171; }
+  .badge-green  { background: #0d2818; color: #4ade80; }
+  .badge-blue   { background: #0d1f40; color: #60a5fa; }
+  .badge-yellow { background: #2d2000; color: #fbbf24; }
+  .badge-gray   { background: #1e293b; color: #94a3b8; }
+
+  pre { background: #0d1117; border: 1px solid #334155; border-radius: 8px; padding: 18px 20px;
+        font-size: .82rem; line-height: 1.6; overflow-x: auto; margin: 10px 0 18px; }
+  code { font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', monospace; }
+  p > code, li > code { background: #1e293b; padding: 2px 6px; border-radius: 4px;
+                         font-size: .85em; color: #93c5fd; }
+
+  /* diff colors */
+  .diff-add  { color: #4ade80; }
+  .diff-del  { color: #f87171; }
+  .diff-hunk { color: #60a5fa; }
+  .diff-ctx  { color: #64748b; }
+  .diff-file { color: #f8fafc; font-weight: 600; }
+
+  ul, ol { padding-left: 24px; }
+  li { margin-bottom: 6px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width: 700px){ .grid2 { grid-template-columns: 1fr; } }
+
+  .toc { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 20px 28px; margin-bottom: 40px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 4px; }
+  .toc a { color: #60a5fa; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .fix-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .fix-num { width: 28px; height: 28px; border-radius: 50%; background: #334155;
+             display: flex; align-items: center; justify-content: center;
+             font-size: .8rem; font-weight: 700; color: #f8fafc; flex-shrink: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: .87rem; }
+  th { background: #1e293b; color: #94a3b8; font-weight: 600; text-transform: uppercase;
+       letter-spacing: .06em; font-size: .75rem; padding: 10px 14px; text-align: left; border-bottom: 1px solid #334155; }
+  td { padding: 10px 14px; border-bottom: 1px solid #1e293b; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td code { background: #0d1117; padding: 2px 6px; border-radius: 4px; font-size: .82em; }
+
+  .rule-box { background: #0d1117; border: 1px solid #334155; border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+  .rule-box .label { font-size: .72rem; font-weight: 700; color: #f59e0b; text-transform: uppercase;
+                     letter-spacing: .08em; margin-bottom: 6px; }
+
+  .file-label { font-size: .72rem; color: #64748b; font-weight: 600; text-transform: uppercase;
+                letter-spacing: .06em; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Offline Mode Trajectory Determinism</h1>
+<p class="subtitle">JointSLAM · 원인 분석 및 수정 내역 · 2026-05-07</p>
+
+<!-- TOC -->
+<div class="toc">
+  <strong style="color:#f8fafc">목차</strong>
+  <ol style="margin-top:10px">
+    <li><a href="#summary">요약</a></li>
+    <li><a href="#root-cause">근본 원인: 포인터 주소 기반 컨테이너 순서</a></li>
+    <li><a href="#fix-overview">수정 전략 개요</a></li>
+    <li><a href="#fix1">Fix 1 — SLAMComparators.h (신규 파일)</a></li>
+    <li><a href="#fix2">Fix 2 — 핵심 자료구조 타입 변경 (헤더)</a></li>
+    <li><a href="#fix3">Fix 3 — g2o 엣지 삽입 순서 고정 (Optimizer.cc)</a></li>
+    <li><a href="#fix4">Fix 4 — 공변 그래프 정렬 및 참조 KF 타이브레이커</a></li>
+    <li><a href="#fix5">Fix 5 — SetBadFlag 자식 순서 고정 (KeyFrame.cc)</a></li>
+    <li><a href="#fix6">Fix 6 — DUtils::Random 시드 고정 (System.cc)</a></li>
+    <li><a href="#fix7">Fix 7 — 오프라인 Viewer 스레드 억제 (System.cc)</a></li>
+    <li><a href="#callers">Fix 8 — 호출자 로컬 변수 타입 업데이트</a></li>
+    <li><a href="#validation">검증 결과</a></li>
+    <li><a href="#rules">향후 코드 작성 규칙</a></li>
+  </ol>
+</div>
+
+<!-- ───────────────────── SUMMARY ───────────────────── -->
+<h2 id="summary">요약</h2>
+<div class="card success">
+  <p><strong>문제</strong>: <code>runtime.slam.mode: "offline"</code> 으로 같은 시퀀스를 실행해도 매 실행마다 <code>CameraTrajectoryTUM.txt</code>가 달라졌다.</p>
+  <p style="margin-top:12px"><strong>원인</strong>: Rerun SDK의 Tokio 백그라운드 I/O 스레드가 힙 메모리를 지속 할당·해제하면서 새로 생성되는 <code>KeyFrame</code>/<code>MapPoint</code> 객체의 주소를 매 실행마다 다르게 만든다. <code>std::set&lt;KeyFrame*&gt;</code>·<code>std::map&lt;KeyFrame*, …&gt;</code>는 포인터 주소 순서로 반복(iterate)되므로, 반복 순서 → g2o 엣지 삽입 순서 → BA 결과 → 궤적이 전부 달라진다.</p>
+  <p style="margin-top:12px"><strong>해결</strong>: 모든 포인터 키 컨테이너의 비교자(Comparator)를 주소 비교에서 <code>mnId</code> 비교로 교체. 힙 레이아웃에 무관하게 항상 동일한 순서를 보장.</p>
+  <p style="margin-top:12px"><strong>검증</strong>: rerun 활성화 상태에서 4회 연속 실행 → 모든 <code>CameraTrajectoryTUM.txt</code> 바이트 동일.</p>
+</div>
+
+<!-- ───────────────────── ROOT CAUSE ───────────────────── -->
+<h2 id="root-cause">근본 원인: 포인터 주소 기반 컨테이너 순서</h2>
+
+<div class="card">
+<h3>왜 포인터 주소가 달라지는가</h3>
+<p>glibc는 큰 힙 객체에 <code>mmap</code>을 사용하며, ASLR(Address Space Layout Randomization)과 <strong>tcache LIFO 재사용</strong> 때문에 동일한 프로그램이라도 실행마다 <code>new KeyFrame()</code>이 반환하는 주소가 달라진다.</p>
+<p style="margin-top:12px">오프라인 모드에서 Rerun SDK가 초기화되면 <strong>Tokio 비동기 런타임의 백그라운드 스레드</strong>가 시작되어 SLAM 처리 중에도 지속적으로 힙을 할당·해제한다. 이로 인해 KF/MP 객체가 받는 주소가 실행마다 다르게 된다.</p>
+</div>
+
+<div class="card">
+<h3>포인터 순서가 결과에 영향을 미치는 경로</h3>
+<pre><code>힙 레이아웃 변화
+  → KeyFrame* / MapPoint* 주소 변화
+  → std::set&lt;KeyFrame*&gt;, std::map&lt;KeyFrame*, …&gt; 반복 순서 변화
+  → MapPoint::GetObservations() 반환값의 순서 변화
+  → g2o LocalBundleAdjustment / GlobalBundleAdjustment 엣지 삽입 순서 변화
+  → Hessian 행렬 누적 순서 변화 (부동소수점 덧셈은 비가환)
+  → 최적화 결과 변화
+  → CameraTrajectoryTUM.txt 변화</code></pre>
+
+<p>이 외에도 다음 경로에서 순서가 결과에 영향을 준다:</p>
+<ul style="margin-top:10px">
+  <li><code>UpdateLocalKeyFrames()</code>의 <code>keyframeCounter</code> 반복 → 참조 KF 선택 → 로컬 맵 구성 → 추적 정확도</li>
+  <li><code>GetChilds()</code> 반복 + <code>break</code> → 첫 번째 자식 KF만 로컬 맵에 추가됨 → 로컬 맵이 달라짐</li>
+  <li><code>UpdateBestCovisibles()</code> 정렬 타이브레이커 → 공변 그래프 순서 → 후속 알고리즘 입력</li>
+  <li><code>OptimizeEssentialGraph()</code>의 <code>LoopConnections</code> 반복 → 루프 클로저 BA 결과</li>
+</ul>
+</div>
+
+<div class="card alert">
+<h3>⚠ 진단 과정에서 발견한 중요한 사실</h3>
+<p><code>fprintf</code> 진단 코드를 추가하면 힙 할당이 발생해 포인터 주소가 바뀌고, <strong>비결정성의 위치 자체가 이동</strong>한다. 따라서 진단 코드를 넣은 상태의 비교 결과는 신뢰할 수 없다. 모든 진단 코드를 제거한 뒤에야 안정적인 비교가 가능했다.</p>
+</div>
+
+<!-- ───────────────────── FIX OVERVIEW ───────────────────── -->
+<h2 id="fix-overview">수정 전략 개요</h2>
+
+<table>
+  <thead><tr><th>#</th><th>수정 내용</th><th>파일</th><th>효과</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>KFIdLess / MPIdLess 비교자 신규 정의</td><td><code>include/SLAMComparators.h</code></td><td>타입 레벨 ID 정렬 기반 마련</td></tr>
+    <tr><td>2</td><td>핵심 자료구조 비교자 교체</td><td><code>include/KeyFrame.h</code>, <code>MapPoint.h</code>, <code>Map.h</code>, <code>LoopClosing.h</code></td><td>모든 KF/MP 컨테이너 ID 순서 보장</td></tr>
+    <tr><td>3</td><td>g2o 엣지 삽입 순서 고정</td><td><code>src/Optimizer.cc</code></td><td>BA Hessian 누적 순서 결정적</td></tr>
+    <tr><td>4</td><td>공변 그래프 정렬 타이브레이커</td><td><code>src/KeyFrame.cc</code>, <code>src/Tracking.cc</code></td><td>동점 시 KF ID 기준 선택</td></tr>
+    <tr><td>5</td><td>SetBadFlag 자식 처리 순서 고정</td><td><code>src/KeyFrame.cc</code></td><td>스패닝 트리 재구성 결정적</td></tr>
+    <tr><td>6</td><td>DUtils::Random 시드 고정</td><td><code>src/System.cc</code></td><td>루프 클로저 RANSAC 결정적</td></tr>
+    <tr><td>7</td><td>오프라인 모드 Viewer 스레드 억제</td><td><code>src/System.cc</code></td><td>Pangolin 스레드 힙 간섭 제거</td></tr>
+    <tr><td>8</td><td>호출자 로컬 변수 타입 업데이트</td><td>여러 .cc 파일</td><td>타입 불일치 컴파일 오류 해소</td></tr>
+  </tbody>
+</table>
+
+<!-- ───────────────────── FIX 1 ───────────────────── -->
+<h2 id="fix1">Fix 1 — SLAMComparators.h (신규 파일)</h2>
+<div class="card">
+<div class="fix-header"><div class="fix-num">1</div><h3>include/SLAMComparators.h (신규)</h3></div>
+<p>포인터 비교자를 타입 레벨에서 교체하기 위한 핵심 헤더. <code>KeyFrame</code>·<code>MapPoint</code>를 전방선언(forward declaration)만 사용하여 순환 include 없이 양쪽 헤더에서 사용 가능.</p>
+
+<pre><code class="diff-add">+// include/SLAMComparators.h
++namespace ORB_SLAM2 {
++class KeyFrame;
++class MapPoint;
++
++struct KFIdLess {
++    bool operator()(const KeyFrame* a, const KeyFrame* b) const;
++};
++struct MPIdLess {
++    bool operator()(const MapPoint* a, const MapPoint* b) const;
++};
++} // namespace ORB_SLAM2</code></pre>
+
+<p><strong>인라인 본체(body)</strong>는 전체 클래스 정의가 끝난 뒤 정의해야 <code>mnId</code>에 접근 가능:</p>
+<ul>
+  <li><code>KFIdLess::operator()</code> 본체 → <code>KeyFrame.h</code> 닫는 괄호 바로 앞</li>
+  <li><code>MPIdLess::operator()</code> 본체 → <code>MapPoint.h</code> 닫는 괄호 바로 앞</li>
+</ul>
+
+<pre><code>// KeyFrame.h 맨 끝 (namespace 닫힌 후)
+inline bool ORB_SLAM2::KFIdLess::operator()(
+    const ORB_SLAM2::KeyFrame* a, const ORB_SLAM2::KeyFrame* b) const {
+    return a->mnId &lt; b->mnId;
+}
+
+// MapPoint.h 맨 끝 (namespace 닫힌 후)
+inline bool ORB_SLAM2::MPIdLess::operator()(
+    const ORB_SLAM2::MapPoint* a, const ORB_SLAM2::MapPoint* b) const {
+    return a->mnId &lt; b->mnId;
+}</code></pre>
+</div>
+
+<!-- ───────────────────── FIX 2 ───────────────────── -->
+<h2 id="fix2">Fix 2 — 핵심 자료구조 타입 변경</h2>
+
+<div class="card">
+<div class="fix-header"><div class="fix-num">2</div><h3>변경 대상 멤버 변수 (헤더)</h3></div>
+<table>
+  <thead><tr><th>클래스</th><th>멤버</th><th>Before</th><th>After</th></tr></thead>
+  <tbody>
+    <tr><td><code>MapPoint</code></td><td><code>mObservations</code></td><td><code>map&lt;KF*, size_t&gt;</code></td><td><code>map&lt;KF*, size_t, KFIdLess&gt;</code></td></tr>
+    <tr><td><code>KeyFrame</code></td><td><code>mConnectedKeyFrameWeights</code></td><td><code>map&lt;KF*, int&gt;</code></td><td><code>map&lt;KF*, int, KFIdLess&gt;</code></td></tr>
+    <tr><td><code>KeyFrame</code></td><td><code>mspChildrens</code></td><td><code>set&lt;KF*&gt;</code></td><td><code>set&lt;KF*, KFIdLess&gt;</code></td></tr>
+    <tr><td><code>KeyFrame</code></td><td><code>mspLoopEdges</code></td><td><code>set&lt;KF*&gt;</code></td><td><code>set&lt;KF*, KFIdLess&gt;</code></td></tr>
+    <tr><td><code>Map</code></td><td><code>mspKeyFrames</code></td><td><code>set&lt;KF*&gt;</code></td><td><code>set&lt;KF*, KFIdLess&gt;</code></td></tr>
+    <tr><td><code>Map</code></td><td><code>mspMapPoints</code></td><td><code>set&lt;MP*&gt;</code></td><td><code>set&lt;MP*, MPIdLess&gt;</code></td></tr>
+    <tr><td><code>LoopClosing</code></td><td><code>ConsistentGroup</code> typedef</td><td><code>pair&lt;set&lt;KF*&gt;, int&gt;</code></td><td><code>pair&lt;set&lt;KF*, KFIdLess&gt;, int&gt;</code></td></tr>
+    <tr><td><code>LoopClosing</code></td><td><code>KeyFrameAndPose</code> typedef</td><td><code>map&lt;KF*, Sim3, less&lt;KF*&gt;, …&gt;</code></td><td><code>map&lt;KF*, Sim3, KFIdLess, …&gt;</code></td></tr>
+  </tbody>
+</table>
+
+<p>반환 타입도 멤버 타입과 일치하도록 변경:</p>
+<pre><code class="diff-del">- std::set&lt;KeyFrame*&gt;  GetConnectedKeyFrames();
+- std::set&lt;KeyFrame*&gt;  GetChilds();
+- std::set&lt;KeyFrame*&gt;  GetLoopEdges();
+- std::set&lt;MapPoint*&gt;  GetMapPoints();
+- std::map&lt;KeyFrame*,size_t&gt; GetObservations();</code></pre>
+<pre><code class="diff-add">+ std::set&lt;KeyFrame*, KFIdLess&gt;    GetConnectedKeyFrames();
++ std::set&lt;KeyFrame*, KFIdLess&gt;    GetChilds();
++ std::set&lt;KeyFrame*, KFIdLess&gt;    GetLoopEdges();
++ std::set&lt;MapPoint*, MPIdLess&gt;    GetMapPoints();
++ std::map&lt;KeyFrame*,size_t,KFIdLess&gt; GetObservations();</code></pre>
+
+<div class="rule-box" style="margin-top:16px">
+  <div class="label">왜 반환 타입도 바꿔야 하는가</div>
+  <p>반환 타입을 <code>set&lt;KeyFrame*&gt;</code>로 유지하면, 내부 멤버(<code>set&lt;KeyFrame*, KFIdLess&gt;</code>)를 복사할 때 비교자가 <code>std::less&lt;KeyFrame*&gt;</code>(포인터 주소 비교)로 바뀐다. 호출자가 받는 복사본이 다시 비결정적이 되므로 반환 타입도 반드시 교체해야 한다.</p>
+</div>
+</div>
+
+<!-- ───────────────────── FIX 3 ───────────────────── -->
+<h2 id="fix3">Fix 3 — g2o 엣지 삽입 순서 고정</h2>
+
+<div class="card">
+<div class="fix-header"><div class="fix-num">3</div><h3>Optimizer.cc — BundleAdjustment / LocalBundleAdjustment</h3></div>
+<p>g2o는 엣지를 삽입하는 순서대로 내부 ID를 부여하고, Hessian 행렬을 이 순서로 누적한다. 부동소수점 덧셈은 비가환(non-commutative)이므로 순서가 달라지면 결과도 달라진다.</p>
+
+<p>Fix 2로 <code>GetObservations()</code>가 KF ID 순서의 맵을 반환하게 되어 이미 결정적이 되지만, 추가 안전장치로 명시적 정렬도 유지:</p>
+
+<pre><code>// Before: observations 반복 순서 = 포인터 주소 순서 (비결정적)
+for(map&lt;KeyFrame*,size_t&gt;::const_iterator mit = observations.begin(); ...)
+
+// After: KF ID 순서로 명시 정렬 후 엣지 삽입
+// MODIFIED for "stable edge insertion order by KF id for deterministic offline g2o BA"
+vector&lt;pair&lt;unsigned long, KeyFrame*&gt;&gt; vSortedObs;
+for(const auto&amp; kv : observations)
+    vSortedObs.emplace_back(kv.first-&gt;mnId, kv.first);
+sort(vSortedObs.begin(), vSortedObs.end());  // ID 오름차순
+
+for(const auto&amp; [kfId, pKFi] : vSortedObs)
+    { ... optimizer.addEdge(e); ... }</code></pre>
+
+<p><code>OptimizeEssentialGraph</code>의 <code>LoopConnections</code> 타입도 KFIdLess 적용:</p>
+<pre><code class="diff-del">- map&lt;KeyFrame*, set&lt;KeyFrame*&gt;&gt; LoopConnections;</code></pre>
+<pre><code class="diff-add">+ map&lt;KeyFrame*, set&lt;KeyFrame*, KFIdLess&gt;, KFIdLess&gt; LoopConnections;</code></pre>
+</div>
+
+<!-- ───────────────────── FIX 4 ───────────────────── -->
+<h2 id="fix4">Fix 4 — 공변 그래프 정렬 및 참조 KF 타이브레이커</h2>
+
+<div class="card">
+<div class="fix-header"><div class="fix-num">4</div><h3>KeyFrame::UpdateBestCovisibles() &amp; UpdateConnections()</h3></div>
+<p>코비전(공변) 그래프를 가중치 내림차순으로 정렬할 때, <strong>가중치가 같은 KF끼리의 순서</strong>가 포인터 주소에 따라 달라졌다. KF ID를 타이브레이커로 추가:</p>
+
+<pre><code class="diff-del">- sort(vPairs.begin(), vPairs.end());</code></pre>
+<pre><code class="diff-add">+ // MODIFIED for "stable covisibility sort by id tiebreaker for deterministic offline mode"
++ sort(vPairs.begin(), vPairs.end(),
++      [](const pair&lt;int,KeyFrame*&gt;&amp; a, const pair&lt;int,KeyFrame*&gt;&amp; b){
++          if(a.first != b.first) return a.first &lt; b.first;
++          return a.second-&gt;mnId &lt; b.second-&gt;mnId;
++      });</code></pre>
+
+<h3 style="margin-top:20px">Tracking::UpdateLocalKeyFrames() — 참조 KF 선택</h3>
+<p>가장 많은 맵 포인트를 공유하는 KF를 참조 KF로 선택할 때, 공유 수가 같으면 ID가 낮은 KF를 일관되게 선택:</p>
+
+<pre><code class="diff-del">- if(it-&gt;second &gt; max)</code></pre>
+<pre><code class="diff-add">+ // MODIFIED for "stable reference keyframe selection by id tiebreaker for deterministic offline mode"
++ if(it-&gt;second &gt; max ||
++    (it-&gt;second == max &amp;&amp; pKFmax &amp;&amp; pKF-&gt;mnId &lt; pKFmax-&gt;mnId))</code></pre>
+
+<p>또한 로컬 KF 목록을 ID 순으로 정렬한 후 이웃 KF를 탐색하여, 코비전 이웃·자식·부모를 추가하는 순서가 결정적이 되도록 함:</p>
+<pre><code class="diff-add">+ // MODIFIED for "stable local keyframe ordering by id for deterministic offline mode"
++ sort(mvpLocalKeyFrames.begin(), mvpLocalKeyFrames.end(),
++      [](const KeyFrame* a, const KeyFrame* b){ return a-&gt;mnId &lt; b-&gt;mnId; });</code></pre>
+</div>
+
+<!-- ───────────────────── FIX 5 ───────────────────── -->
+<h2 id="fix5">Fix 5 — SetBadFlag 자식 처리 순서 고정</h2>
+
+<div class="card">
+<div class="fix-header"><div class="fix-num">5</div><h3>KeyFrame::SetBadFlag() — 스패닝 트리 재구성</h3></div>
+<p>KF가 Bad로 표시될 때 자식 KF들의 새 부모를 찾는 루프가 <code>mspChildrens</code>(포인터 주소 순서 set)를 그대로 반복했다. KF ID 순으로 정렬한 벡터를 사용하고, 동점 시 ID 타이브레이커 적용:</p>
+
+<pre><code class="diff-del">- for(set&lt;KeyFrame*&gt;::iterator sit = mspChildrens.begin(); ...)</code></pre>
+<pre><code class="diff-add">+ // MODIFIED for "stable child ordering by id when reassigning parents for deterministic offline mode"
++ vector&lt;KeyFrame*&gt; vChilds(mspChildrens.begin(), mspChildrens.end());
++ sort(vChilds.begin(), vChilds.end(), [](KeyFrame* a, KeyFrame* b){ return a-&gt;mnId &lt; b-&gt;mnId; });
++
++ for(KeyFrame* pKF : vChilds) {
++     ...
++     int w = pKF-&gt;GetWeight(vpConnected[i]);
++     if(w &gt; max || (w == max &amp;&amp; pC != nullptr &amp;&amp; pKF-&gt;mnId &lt; pC-&gt;mnId)) {
++         pC = pKF; pP = vpConnected[i]; max = w; bContinue = true;
++     }
++ }</code></pre>
+
+<p>Fix 2로 <code>mspChildrens</code>가 <code>set&lt;KeyFrame*, KFIdLess&gt;</code>로 바뀌어 이 명시 정렬은 이제 중복이지만, 이전에 추가된 코드이므로 그대로 유지한다. 무해하고 의도를 명확히 전달한다.</p>
+</div>
+
+<!-- ───────────────────── FIX 6 ───────────────────── -->
+<h2 id="fix6">Fix 6 — DUtils::Random 시드 고정</h2>
+
+<div class="card">
+<div class="fix-header"><div class="fix-num">6</div><h3>System.cc — 오프라인 모드 초기화 블록</h3></div>
+<p><code>Sim3Solver</code>의 루프 클로저 RANSAC이 내부적으로 <code>DUtils::Random::RandomInt()</code>를 호출하는데, 이 함수는 첫 호출 시 <code>time()</code> 기반으로 시드를 설정한다. 오프라인 모드에서 시드를 고정:</p>
+
+<pre><code class="diff-add">+ #include "Thirdparty/DBoW2/DUtils/Random.h"
+
+  if(bOfflineMode) {
+      cv::setNumThreads(1);
+      cv::setRNGSeed(0);
+      Frame::SetUseParallelStereoExtraction(false);
++     // MODIFIED for "seeding DUtils random in offline mode for deterministic RANSAC"
++     DUtils::Random::SeedRand(0);
+  }</code></pre>
+</div>
+
+<!-- ───────────────────── FIX 7 ───────────────────── -->
+<h2 id="fix7">Fix 7 — 오프라인 Viewer 스레드 억제</h2>
+
+<div class="card">
+<div class="fix-header"><div class="fix-num">7</div><h3>System.cc — Viewer 생성 조건</h3></div>
+<p>Viewer(구 Pangolin)의 렌더링 스레드도 힙 활동을 발생시켜 비결정성에 기여할 수 있다. 오프라인 모드에서는 궤적 저장 후 Viewer 결과를 확인할 수 없으므로 스레드 자체를 생성하지 않음:</p>
+
+<pre><code class="diff-del">- if(bUseViewer)</code></pre>
+<pre><code class="diff-add">+ // MODIFIED for "suppressing async viewer in offline SLAM mode to preserve trajectory determinism"
++ if(bUseViewer &amp;&amp; !bOfflineMode)</code></pre>
+
+<p>Rerun 시각화는 Tracking 스레드에서 동기적으로 호출되므로 별도 억제 불필요. Viewer 억제와 무관하게 rerun 로그는 정상 기록된다.</p>
+</div>
+
+<!-- ───────────────────── FIX 8 ───────────────────── -->
+<h2 id="callers">Fix 8 — 호출자 로컬 변수 타입 업데이트</h2>
+
+<div class="card">
+<div class="fix-header"><div class="fix-num">8</div><h3>호출자 파일별 변경 요약</h3></div>
+<p>반환 타입이 바뀐 접근자(accessor)를 사용하는 모든 호출자의 로컬 변수 타입을 업데이트. 명시 타입 대신 <code>auto</code>로 변경하는 방식으로 향후 타입 변경에도 자동으로 따라오도록 함.</p>
+
+<table>
+  <thead><tr><th>파일</th><th>변경 내용</th></tr></thead>
+  <tbody>
+    <tr><td><code>src/MapPoint.cc</code></td><td><code>SetBadFlag</code>, <code>Replace</code>의 <code>obs</code>: <code>map&lt;KF*,size_t&gt;</code> → <code>map&lt;KF*,size_t,KFIdLess&gt;</code>; <code>observations</code> 로컬 변수 동일</td></tr>
+    <tr><td><code>src/KeyFrame.cc</code></td><td><code>KFcounter</code>: <code>map&lt;KF*,int,KFIdLess&gt;</code>; <code>sParentCandidates</code>: <code>set&lt;KF*,KFIdLess&gt;</code>; 반복자 → <code>auto</code></td></tr>
+    <tr><td><code>src/Optimizer.cc</code></td><td><code>observations</code> 3곳 → <code>auto</code>; <code>LoopConnections</code> → KFIdLess 키·값; <code>spConnections</code>, <code>sLoopEdges</code> → <code>auto</code></td></tr>
+    <tr><td><code>src/LocalMapping.cc</code></td><td><code>observations</code> → <code>auto</code></td></tr>
+    <tr><td><code>src/Tracking.cc</code></td><td><code>keyframeCounter</code> → <code>KFIdLess</code>; <code>observations</code>, <code>spChilds</code> → <code>auto</code></td></tr>
+    <tr><td><code>src/LoopClosing.cc</code></td><td><code>spCandidateGroup</code>, <code>sPreviousGroup</code>, <code>sChilds</code> → <code>auto</code>; <code>LoopConnections</code> → KFIdLess</td></tr>
+    <tr><td><code>src/KeyFrameDatabase.cc</code></td><td><code>spConnectedKeyFrames</code> → <code>auto</code></td></tr>
+    <tr><td><code>src/MapDrawer.cc</code></td><td><code>spRefMPs</code> → <code>set&lt;MP*, MPIdLess&gt;</code>; <code>sLoopKFs</code> → <code>auto</code></td></tr>
+    <tr><td><code>src/ORBmatcher.cc</code></td><td><code>spAlreadyFound</code> → <code>auto</code></td></tr>
+    <tr><td><code>src/Map.cc</code></td><td>반복자 → <code>auto</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ───────────────────── VALIDATION ───────────────────── -->
+<h2 id="validation">검증 결과</h2>
+
+<div class="card success">
+<h3>제어 실험 (rerun 비활성화)</h3>
+<pre><code># visualization.runtime.rerun.enabled: false 상태에서 2회 실행
+diff /tmp/tum_run1.txt /tmp/tum_run2.txt → IDENTICAL</code></pre>
+<p>→ Rerun이 없으면 이미 결정적임을 확인. 문제의 원인이 Rerun 백그라운드 스레드임을 입증.</p>
+
+<h3 style="margin-top:20px">최종 검증 (rerun 활성화, 4회 실행)</h3>
+<pre><code># visualization.runtime.rerun.enabled: true 상태에서 4회 연속 실행
+diff run1 vs run2 → IDENTICAL
+diff run1 vs run3 → IDENTICAL
+diff run1 vs run4 → IDENTICAL</code></pre>
+<p>→ Rerun이 활성화된 상태에서도 완전히 결정적.</p>
+</div>
+
+<!-- ───────────────────── RULES ───────────────────── -->
+<h2 id="rules">향후 코드 작성 규칙</h2>
+
+<div class="card info">
+<h3>규칙 1 — 포인터 키 컨테이너는 반드시 ID 비교자를 사용할 것</h3>
+<pre><code>// ❌ 금지 — 포인터 주소 순서 = 힙 레이아웃에 따라 달라짐
+std::set&lt;KeyFrame*&gt;        mySet;
+std::map&lt;KeyFrame*, int&gt;   myMap;
+std::set&lt;MapPoint*&gt;        mpSet;
+
+// ✅ 올바른 방법
+std::set&lt;KeyFrame*, KFIdLess&gt;     mySet;
+std::map&lt;KeyFrame*, int, KFIdLess&gt; myMap;
+std::set&lt;MapPoint*, MPIdLess&gt;     mpSet;</code></pre>
+</div>
+
+<div class="card info">
+<h3>규칙 2 — 새 백그라운드 스레드를 추가하면 오프라인 모드 검증 필수</h3>
+<p>새로운 비동기 처리(네트워크 추론, 파일 I/O, 시각화 등)를 추가할 때는 반드시 오프라인 모드에서 2회 실행 후 <code>CameraTrajectoryTUM.txt</code>를 비교하여 결정성을 확인할 것.</p>
+<pre><code>./Examples/Stereo/stereo_kitti Experiments/&lt;exp&gt;.yaml
+cp CameraTrajectoryTUM.txt /tmp/run1.txt
+./Examples/Stereo/stereo_kitti Experiments/&lt;exp&gt;.yaml
+diff /tmp/run1.txt CameraTrajectoryTUM.txt &amp;&amp; echo "OK"</code></pre>
+</div>
+
+<div class="card info">
+<h3>규칙 3 — 호출자 로컬 변수는 auto 사용 권장</h3>
+<p>KF/MP 컨테이너를 반환하는 접근자의 반환값을 받을 때는 <code>auto</code>를 사용하여 향후 비교자 변경 시 타입 불일치 오류를 방지:</p>
+<pre><code>// ✅ 권장
+const auto observations = pMP-&gt;GetObservations();
+const auto spChilds     = pKF-&gt;GetChilds();
+auto spConnected        = pKF-&gt;GetConnectedKeyFrames();
+
+// ❌ 비권장 (타입 변경 시 컴파일 오류 발생)
+const map&lt;KeyFrame*, size_t&gt; observations = pMP-&gt;GetObservations();</code></pre>
+</div>
+
+<div class="card info">
+<h3>규칙 4 — g2o 엣지 삽입 순서는 항상 ID 기준 정렬 후 삽입</h3>
+<pre><code>// ✅ 올바른 패턴
+auto observations = pMP-&gt;GetObservations();  // 이미 KFIdLess 정렬
+vector&lt;pair&lt;unsigned long, KeyFrame*&gt;&gt; vSorted;
+for(const auto&amp; kv : observations)
+    vSorted.emplace_back(kv.first-&gt;mnId, kv.first);
+sort(vSorted.begin(), vSorted.end());
+for(const auto&amp; [id, pKF] : vSorted)
+    optimizer.addEdge(...);</code></pre>
+</div>
+
+<div class="card info">
+<h3>규칙 5 — 진단 코드(fprintf 등) 추가 금지</h3>
+<p>비결정성 디버깅 시 <code>fprintf</code> 등의 진단 코드를 추가하면 힙 할당이 발생하여 비결정성의 위치 자체가 이동한다. 진단이 필요할 경우에는 반드시 <strong>모든 기존 진단 코드를 제거한 상태</strong>에서 측정해야 한다.</p>
+</div>
+
+</div><!-- container -->
+</body>
+</html>

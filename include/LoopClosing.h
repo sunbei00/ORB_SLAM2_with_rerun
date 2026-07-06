@@ -38,6 +38,7 @@
 #include "ORBVocabulary.h"
 #include "Tracking.h"
 #include "KeyFrameDatabase.h"
+#include "SLAMComparators.h"
 #include "Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h"
 #include "Thirdparty/g2o/g2o/types/sim3.h"
 
@@ -56,8 +57,10 @@ class LoopClosing
 {
 public:
 
-    typedef pair<set<KeyFrame*>,int> ConsistentGroup;    
-    typedef map<KeyFrame*,g2o::Sim3,std::less<KeyFrame*>,
+    typedef set<KeyFrame*, KFIdLess> KeyFrameSet;
+    typedef map<KeyFrame*, KeyFrameSet, KFIdLess> KeyFrameConnectionMap;
+    typedef pair<KeyFrameSet,int> ConsistentGroup;
+    typedef map<KeyFrame*,g2o::Sim3,KFIdLess,
         Eigen::aligned_allocator<std::pair<KeyFrame* const, g2o::Sim3> > > KeyFrameAndPose;
 
 public:
@@ -70,6 +73,7 @@ public:
 
     // Main function
     void Run();
+    void SetRunSynchronously(bool flag);
 
     void InsertKeyFrame(KeyFrame *pKF);
 
@@ -114,6 +118,7 @@ protected:
     bool mbFinishRequested;
     bool mbFinished;
     std::mutex mMutexFinish;
+    bool mbRunSynchronously;
 
     Map* mpMap;
     Tracking* mpTracker;

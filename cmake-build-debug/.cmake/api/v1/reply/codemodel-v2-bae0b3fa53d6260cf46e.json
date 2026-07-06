@@ -1,0 +1,167 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						3,
+						4,
+						6,
+						7,
+						8
+					]
+				},
+				{
+					"build" : "_deps/rerun_sdk-build",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.rerun_sdk-build-Debug-30456cdef207699b9a42.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "cmake-build-debug/_deps/rerun_sdk-src",
+					"targetIndexes" : 
+					[
+						1,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ORB_SLAM2",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						3,
+						4,
+						6,
+						7,
+						8
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "rerun_sdk",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ORB_SLAM2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ORB_SLAM2-Debug-c9d70678e221272828fa.json",
+					"name" : "ORB_SLAM2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "arrow_cpp::@9027447480fbc0937424",
+					"jsonFile" : "target-arrow_cpp-Debug-f8b955dcaae9f7564774.json",
+					"name" : "arrow_cpp",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mono_euroc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mono_euroc-Debug-998f2f92ab8998633e51.json",
+					"name" : "mono_euroc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mono_kitti::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mono_kitti-Debug-f213838c5f125f1d2672.json",
+					"name" : "mono_kitti",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mono_tum::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mono_tum-Debug-111ecd2288c45ca4a241.json",
+					"name" : "mono_tum",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "rerun_sdk::@9027447480fbc0937424",
+					"jsonFile" : "target-rerun_sdk-Debug-8a41517f4fc6fae5e7e2.json",
+					"name" : "rerun_sdk",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rgbd_tum::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rgbd_tum-Debug-278129822bdab09edc5b.json",
+					"name" : "rgbd_tum",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stereo_euroc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stereo_euroc-Debug-79efdcb0e495bf308dde.json",
+					"name" : "stereo_euroc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stereo_kitti::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stereo_kitti-Debug-67c7aa91766f1dc0a895.json",
+					"name" : "stereo_kitti",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/ORB_SLAM2_with_rerun/cmake-build-debug",
+		"source" : "/root/ORB_SLAM2_with_rerun"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

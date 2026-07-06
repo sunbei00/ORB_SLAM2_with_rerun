@@ -34,7 +34,8 @@
 namespace ORB_SLAM2
 {
 
-MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath) : mpMap(pMap), mRecordStream(rerun::RecordingStream("ORB_SLAM2"))
+MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath, bool bEnableRerun) :
+    mpMap(pMap), mRecordStream(rerun::RecordingStream("ORB_SLAM2")), mbEnableRerun(bEnableRerun)
 {
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
 
@@ -44,6 +45,9 @@ MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath) : mpMap(pMap), mRe
     mPointSize = fSettings["Viewer.PointSize"];
     mCameraSize = fSettings["Viewer.CameraSize"];
     mCameraLineWidth = fSettings["Viewer.CameraLineWidth"];
+
+    if(!mbEnableRerun)
+        return;
 
     mRecordStream.spawn().exit_on_failure();
     mRecordStream.log_static("/", rerun::ViewCoordinates::RIGHT_HAND_Y_DOWN);
@@ -71,10 +75,13 @@ MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath) : mpMap(pMap), mRe
 
 void MapDrawer::DrawMapPoints()
 {
+    if(!mbEnableRerun)
+        return;
+
     const vector<MapPoint*> &vpMPs = mpMap->GetAllMapPoints();
     const vector<MapPoint*> &vpRefMPs = mpMap->GetReferenceMapPoints();
 
-    set<MapPoint*> spRefMPs(vpRefMPs.begin(), vpRefMPs.end());
+    set<MapPoint*, MPIdLess> spRefMPs(vpRefMPs.begin(), vpRefMPs.end());
 
     if(vpMPs.empty())
         return;
@@ -92,7 +99,7 @@ void MapDrawer::DrawMapPoints()
         allPoints.emplace_back(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
     }
 
-    for(set<MapPoint*>::iterator sit=spRefMPs.begin(), send=spRefMPs.end(); sit!=send; sit++)
+    for(auto sit=spRefMPs.begin(), send=spRefMPs.end(); sit!=send; sit++)
     {
         if((*sit)->isBad())
             continue;
@@ -112,6 +119,9 @@ void MapDrawer::DrawMapPoints()
 
 void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph)
 {
+    if(!mbEnableRerun)
+        return;
+
     const vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
 
     if(bDrawKF)
@@ -170,8 +180,8 @@ void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph)
             }
 
             // Loops
-            set<KeyFrame*> sLoopKFs = vpKFs[i]->GetLoopEdges();
-            for(set<KeyFrame*>::iterator sit=sLoopKFs.begin(), send=sLoopKFs.end(); sit!=send; sit++)
+            auto sLoopKFs = vpKFs[i]->GetLoopEdges();
+            for(auto sit=sLoopKFs.begin(), send=sLoopKFs.end(); sit!=send; sit++)
             {
                 if((*sit)->mnId<vpKFs[i]->mnId)
                     continue;
@@ -194,6 +204,9 @@ void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph)
 
 void MapDrawer::DrawCurrentCamera()
 {
+    if(!mbEnableRerun)
+        return;
+
     static int frame_id = 0;
     mRecordStream.set_time_sequence("frame_id", frame_id++);
 

@@ -44,7 +44,9 @@ namespace ORB_SLAM2
 
 LocalMapping::LocalMapping(Map *pMap, const float bMonocular):
     mbMonocular(bMonocular), mbResetRequested(false), mbFinishRequested(false), mbFinished(true), mpMap(pMap),
-    mbAbortBA(false), mbStopped(false), mbStopRequested(false), mbNotStop(false), mbAcceptKeyFrames(true)
+    mpLoopCloser(static_cast<LoopClosing*>(NULL)), mpTracker(static_cast<Tracking*>(NULL)),
+    mpCurrentKeyFrame(static_cast<KeyFrame*>(NULL)), mbAbortBA(false), mbStopped(false),
+    mbStopRequested(false), mbNotStop(false), mbRunSynchronously(false), mbAcceptKeyFrames(true)
 {
 }
 
@@ -125,12 +127,57 @@ void LocalMapping::Run()
     SetFinish();
 }
 
+void LocalMapping::ProcessNewKeyFrameOffline() {
+    if (!mbRunSynchronously)
+        return;
+
+    if(!CheckNewKeyFrames())
+        return;
+
+    // BoW conversion and insertion in Map
+    ProcessNewKeyFrame();
+
+    // Check recent MapPoints
+    MapPointCulling();
+
+    // Triangulate new MapPoints
+    CreateNewMapPoints();
+
+    // Find more matches in neighbor keyframes and fuse point duplications
+    SearchInNeighbors();
+
+    // Check redundant local Keyframes
+    // KeyFrameCulling();
+
+    mpLoopCloser->InsertKeyFrame(mpCurrentKeyFrame);
+}
+
+void LocalMapping::LocalBAOffline() {
+    if (!mbRunSynchronously)
+        return;
+
+    mbAbortBA = false;
+    // Local BA
+    if(mpMap->KeyFramesInMap()>2)
+        Optimizer::LocalBundleAdjustment(mpCurrentKeyFrame, &mbAbortBA, mpMap);
+}
+
+
+void LocalMapping::SetRunSynchronously(bool flag)
+{
+    unique_lock<mutex> lock(mMutexStop);
+    mbRunSynchronously = flag;
+    if(flag)
+        mbStopped = false;
+}
+
 void LocalMapping::InsertKeyFrame(KeyFrame *pKF)
 {
     unique_lock<mutex> lock(mMutexNewKFs);
     mlNewKeyFrames.push_back(pKF);
     mbAbortBA=true;
 }
+
 
 
 bool LocalMapping::CheckNewKeyFrames()
@@ -570,6 +617,8 @@ void LocalMapping::RequestStop()
 {
     unique_lock<mutex> lock(mMutexStop);
     mbStopRequested = true;
+    if(mbRunSynchronously && !mbNotStop)
+        mbStopped = true;
     unique_lock<mutex> lock2(mMutexNewKFs);
     mbAbortBA = true;
 }
@@ -603,13 +652,16 @@ void LocalMapping::Release()
 {
     unique_lock<mutex> lock(mMutexStop);
     unique_lock<mutex> lock2(mMutexFinish);
-    if(mbFinished)
+    if(mbFinished && !mbRunSynchronously)
         return;
     mbStopped = false;
     mbStopRequested = false;
-    for(list<KeyFrame*>::iterator lit = mlNewKeyFrames.begin(), lend=mlNewKeyFrames.end(); lit!=lend; lit++)
-        delete *lit;
-    mlNewKeyFrames.clear();
+    if(!mbRunSynchronously)
+    {
+        for(list<KeyFrame*>::iterator lit = mlNewKeyFrames.begin(), lend=mlNewKeyFrames.end(); lit!=lend; lit++)
+            delete *lit;
+        mlNewKeyFrames.clear();
+    }
 
     cout << "Local Mapping RELEASE" << endl;
 }
@@ -679,9 +731,9 @@ void LocalMapping::KeyFrameCulling()
                     if(pMP->Observations()>thObs)
                     {
                         const int &scaleLevel = pKF->mvKeysUn[i].octave;
-                        const map<KeyFrame*, size_t> observations = pMP->GetObservations();
+                        const auto observations = pMP->GetObservations();
                         int nObs=0;
-                        for(map<KeyFrame*, size_t>::const_iterator mit=observations.begin(), mend=observations.end(); mit!=mend; mit++)
+                        for(auto mit=observations.begin(), mend=observations.end(); mit!=mend; mit++)
                         {
                             KeyFrame* pKFi = mit->first;
                             if(pKFi==pKF)
@@ -723,6 +775,12 @@ void LocalMapping::RequestReset()
         mbResetRequested = true;
     }
 
+    if(mbRunSynchronously)
+    {
+        ResetIfRequested();
+        return;
+    }
+
     while(1)
     {
         {
@@ -741,6 +799,7 @@ void LocalMapping::ResetIfRequested()
     {
         mlNewKeyFrames.clear();
         mlpRecentAddedMapPoints.clear();
+        mpCurrentKeyFrame=static_cast<KeyFrame*>(NULL);
         mbResetRequested=false;
     }
 }

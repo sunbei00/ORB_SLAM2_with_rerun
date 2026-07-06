@@ -52,6 +52,7 @@ public:
 
     // Main function
     void Run();
+    void SetRunSynchronously(bool flag);
 
     void InsertKeyFrame(KeyFrame* pKF);
 
@@ -75,6 +76,11 @@ public:
         unique_lock<std::mutex> lock(mMutexNewKFs);
         return mlNewKeyFrames.size();
     }
+
+    // Offline mode
+    void ProcessNewKeyFrameOffline();
+    void LocalBAOffline();
+
 
 protected:
 
@@ -121,6 +127,7 @@ protected:
     bool mbStopped;
     bool mbStopRequested;
     bool mbNotStop;
+    bool mbRunSynchronously;
     std::mutex mMutexStop;
 
     bool mbAcceptKeyFrames;

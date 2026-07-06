@@ -43,6 +43,7 @@ bool Frame::mbInitialComputations=true;
 float Frame::cx, Frame::cy, Frame::fx, Frame::fy, Frame::invfx, Frame::invfy;
 float Frame::mnMinX, Frame::mnMinY, Frame::mnMaxX, Frame::mnMaxY;
 float Frame::mfGridElementWidthInv, Frame::mfGridElementHeightInv;
+bool Frame::mbUseParallelStereoExtraction=true;
 
 Frame::Frame()
 {}
@@ -87,10 +88,18 @@ Frame::Frame(const cv::Mat &imLeft, const cv::Mat &imRight, const double &timeSt
     mvInvLevelSigma2 = mpORBextractorLeft->GetInverseScaleSigmaSquares();
 
     // ORB extraction
-    thread threadLeft(&Frame::ExtractORB,this,0,imLeft);
-    thread threadRight(&Frame::ExtractORB,this,1,imRight);
-    threadLeft.join();
-    threadRight.join();
+    if(mbUseParallelStereoExtraction)
+    {
+        thread threadLeft(&Frame::ExtractORB,this,0,imLeft);
+        thread threadRight(&Frame::ExtractORB,this,1,imRight);
+        threadLeft.join();
+        threadRight.join();
+    }
+    else
+    {
+        ExtractORB(0, imLeft);
+        ExtractORB(1, imRight);
+    }
 
     N = mvKeys.size();
 
@@ -262,6 +271,11 @@ void Frame::ExtractORB(int flag, const cv::Mat &im)
         (*mpORBextractorLeft)(im,cv::Mat(),mvKeys,mDescriptors);
     else
         (*mpORBextractorRight)(im,cv::Mat(),mvKeysRight,mDescriptorsRight);
+}
+
+void Frame::SetUseParallelStereoExtraction(bool flag)
+{
+    mbUseParallelStereoExtraction = flag;
 }
 
 void Frame::SetPose(cv::Mat Tcw)

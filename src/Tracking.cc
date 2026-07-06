@@ -36,6 +36,7 @@
 
 #include <unistd.h>
 
+#include<algorithm>
 #include<iostream>
 
 #include<mutex>
@@ -1234,7 +1235,7 @@ void Tracking::UpdateLocalPoints()
 void Tracking::UpdateLocalKeyFrames()
 {
     // Each map point vote for the keyframes in which it has been observed
-    map<KeyFrame*,int> keyframeCounter;
+    map<KeyFrame*,int,KFIdLess> keyframeCounter;
     for(int i=0; i<mCurrentFrame.N; i++)
     {
         if(mCurrentFrame.mvpMapPoints[i])
@@ -1242,8 +1243,8 @@ void Tracking::UpdateLocalKeyFrames()
             MapPoint* pMP = mCurrentFrame.mvpMapPoints[i];
             if(!pMP->isBad())
             {
-                const map<KeyFrame*,size_t> observations = pMP->GetObservations();
-                for(map<KeyFrame*,size_t>::const_iterator it=observations.begin(), itend=observations.end(); it!=itend; it++)
+                const auto observations = pMP->GetObservations();
+                for(auto it=observations.begin(), itend=observations.end(); it!=itend; it++)
                     keyframeCounter[it->first]++;
             }
             else
@@ -1263,14 +1264,14 @@ void Tracking::UpdateLocalKeyFrames()
     mvpLocalKeyFrames.reserve(3*keyframeCounter.size());
 
     // All keyframes that observe a map point are included in the local map. Also check which keyframe shares most points
-    for(map<KeyFrame*,int>::const_iterator it=keyframeCounter.begin(), itEnd=keyframeCounter.end(); it!=itEnd; it++)
+    for(auto it=keyframeCounter.begin(), itEnd=keyframeCounter.end(); it!=itEnd; it++)
     {
         KeyFrame* pKF = it->first;
 
         if(pKF->isBad())
             continue;
 
-        if(it->second>max)
+        if(it->second>max || (it->second==max && pKFmax && pKF->mnId<pKFmax->mnId))
         {
             max=it->second;
             pKFmax=pKF;
@@ -1280,6 +1281,7 @@ void Tracking::UpdateLocalKeyFrames()
         pKF->mnTrackReferenceForFrame = mCurrentFrame.mnId;
     }
 
+    sort(mvpLocalKeyFrames.begin(), mvpLocalKeyFrames.end(), KeyFrame::lId);
 
     // Include also some not-already-included keyframes that are neighbors to already-included keyframes
     for(vector<KeyFrame*>::const_iterator itKF=mvpLocalKeyFrames.begin(), itEndKF=mvpLocalKeyFrames.end(); itKF!=itEndKF; itKF++)
@@ -1306,8 +1308,8 @@ void Tracking::UpdateLocalKeyFrames()
             }
         }
 
-        const set<KeyFrame*> spChilds = pKF->GetChilds();
-        for(set<KeyFrame*>::const_iterator sit=spChilds.begin(), send=spChilds.end(); sit!=send; sit++)
+        const auto spChilds = pKF->GetChilds();
+        for(auto sit=spChilds.begin(), send=spChilds.end(); sit!=send; sit++)
         {
             KeyFrame* pChildKF = *sit;
             if(!pChildKF->isBad())

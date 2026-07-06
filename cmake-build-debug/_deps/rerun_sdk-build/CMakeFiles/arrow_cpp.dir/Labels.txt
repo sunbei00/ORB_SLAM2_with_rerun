@@ -1,0 +1,13 @@
+# Target labels
+ arrow_cpp
+# Source files and their labels
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp.rule
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/CMakeFiles/arrow_cpp-complete.rule
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-build.rule
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-configure.rule
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-download.rule
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-install.rule
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-mkdir.rule
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-patch.rule
+/root/ORB_SLAM2_with_rerun/cmake-build-debug/_deps/rerun_sdk-build/arrow/src/arrow_cpp-stamp/arrow_cpp-update.rule
