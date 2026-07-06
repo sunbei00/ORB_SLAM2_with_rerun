@@ -42,6 +42,7 @@ public:
     void DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph);
     void DrawCurrentCamera();
     void DrawFrameImage(const cv::Mat &im);
+    void DrawGroundTruthTrajectory(const std::string &strTrajectoryPath);
     void SetFrameId(const int frameId);
     bool IsRerunEnabled() const;
     void SetCurrentCameraPose(const cv::Mat &Tcw);

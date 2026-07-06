@@ -555,6 +555,10 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
     return mTrackedKeyPointsUn;
 }
 
+void System::DrawGroundTruthTraj(const string &filename) {
+    mpMapDrawer->DrawGroundTruthTrajectory(filename);
+}
+
 void System::BackendOffline() const {
     if (!mbOfflineMode)
         return;

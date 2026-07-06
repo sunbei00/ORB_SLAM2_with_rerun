@@ -22,8 +22,11 @@
 
 #include <stddef.h>
 #include <opencv2/imgproc.hpp>
+#include <fstream>
+#include <iostream>
 #include <mutex>
 #include <set>
+#include <sstream>
 #include <vector>
 
 #include "Converter.h"
@@ -170,6 +173,65 @@ void MapDrawer::DrawFrameImage(const cv::Mat &im)
             rerun::Image::from_rgb24(rerun::take_ownership(std::move(bytes)), resolution)
         );
     }
+}
+
+void MapDrawer::DrawGroundTruthTrajectory(const std::string &strTrajectoryPath)
+{
+    if(!mbEnableRerun)
+        return;
+
+    ifstream fTrajectory(strTrajectoryPath.c_str());
+    if(!fTrajectory.is_open())
+    {
+        cerr << "MapDrawer: cannot open ground truth trajectory file " << strTrajectoryPath << endl;
+        return;
+    }
+
+    vector<rerun::Position3D> trajectory;
+    string line;
+    while(getline(fTrajectory, line))
+    {
+        if(line.empty() || line[0] == '#')
+            continue;
+
+        stringstream ss(line);
+        vector<double> values;
+        double v;
+        while(ss >> v)
+            values.push_back(v);
+
+        if(values.size() == 12)
+        {
+            // KITTI: row-major 3x4 pose matrix, translation at indices 3, 7, 11
+            trajectory.emplace_back(
+                static_cast<float>(values[3]),
+                static_cast<float>(values[7]),
+                static_cast<float>(values[11])
+            );
+        }
+        else if(values.size() == 8)
+        {
+            // TUM: timestamp tx ty tz qx qy qz qw
+            trajectory.emplace_back(
+                static_cast<float>(values[1]),
+                static_cast<float>(values[2]),
+                static_cast<float>(values[3])
+            );
+        }
+    }
+
+    if(trajectory.empty())
+    {
+        cerr << "MapDrawer: no valid KITTI/TUM poses in " << strTrajectoryPath << endl;
+        return;
+    }
+
+    mRecordStream.log_static(
+        "world/ground_truth_trajectory",
+        rerun::LineStrips3D(vector<vector<rerun::Position3D>>{trajectory})
+            .with_colors({rerun::Color(255, 0, 255)})
+            .with_radii(mGraphLineWidth * 0.01f)
+    );
 }
 
 void MapDrawer::SetFrameId(const int frameId)
